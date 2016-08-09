@@ -3,7 +3,6 @@
 #-----------------
 # Environment variables
 #-----------------
-export TERM=xterm
 # Whenever displaying the prompt, write the previous line to disk and change term title to show user@host when in ssh session
 PROMPT_COMMAND='history -a; echo -ne "\033]0;${USER}@${HOSTNAME}:${PWD/#$HOME/~}\007"'
 

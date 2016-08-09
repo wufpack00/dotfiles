@@ -1,5 +1,8 @@
 #http://quenenni.domainepublic.net/screenrc.txt
 
+# by default, $TERM is set to screen which may cause issues with other commands (ie, vim)
+# term xterm
+
 # make the shell in every window a login shell
 shell -$SHELL
 

@@ -54,3 +54,8 @@ if version >= 700
   au InsertLeave * highlight StatusLine cterm=bold ctermfg=white ctermbg=blue
   au InsertEnter * highlight StatusLine cterm=bold ctermfg=white ctermbg=red
 endif
+
+" by default, $TERM is set to "screen" when in screen session...and vim doesn't like it
+if match($TERM, "screen")!=-1
+  set term=xterm
+endif
