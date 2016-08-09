@@ -1,0 +1,10 @@
+# .screenrc.local
+
+source $HOME/.screenrc
+
+# default windows
+# syntax: screen -t label order command
+screen -t local 1
+screen -t ssh 2
+
+select 1

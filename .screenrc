@@ -1,6 +1,6 @@
 #http://quenenni.domainepublic.net/screenrc.txt
 
-# by default, $TERM is set to screen which may cause issues with other commands (ie, vim, colors not displaying, etc.)
+# by default, $TERM is set to screen which may cause issues with other commands (ie, vim)
 term xterm
 
 # make the shell in every window a login shell
@@ -15,6 +15,9 @@ vbell off
 # define number of scrollback lines
 defscrollback 20000
 
+# mouse tracking allows to switch region focus by clicking
+mousetrack on
+
 # Window list at the bottom. hostname, centered tabs and redmarked active windows:
 hardstatus on  
 hardstatus alwayslastline  
@@ -24,8 +27,25 @@ hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
 #shelltitle "shell"
 shelltitle "$ |bash"
 
-# create 2 windows by default
-# syntax: screen -t label order command
-# note: last screen created gets focus
-screen -t ssh 1
-screen -t local 0
+# default windows
+bind c screen 1 # window numbering starts at 1 not 0
+bind 0 select 10
+
+# switch windows with F3 (prev) and F4 (next)
+bindkey "^[OR" prev
+bindkey "^[OS" next
+
+# kill this window with F9
+bindkey -k k9 kill
+
+# create new window with F8
+bindkey -k k8 screen
+
+# rename current window with F7
+bindkey -k k7 title
+
+# show window with ctrl+a space
+bind ' ' windowlist -b
+
+# refresh screen after closing a program
+altscreen on

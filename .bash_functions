@@ -213,9 +213,9 @@ function h() {
 function screen_func {
     if [ -z "$1" ]
     then
-        screen
+        screen -c $HOME/.screenrc.local
     else
-        screen -c ~/.screenrc-$1
+        screen -c $HOME/.screenrc.$1
     fi
 }
 
