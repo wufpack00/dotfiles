@@ -11,13 +11,6 @@
 
 PAGER='less -i'
 
-#--------------------------
-# Screen Options
-#--------------------------
-export TERM=xterm
-# Whenever displaying the prompt, write the previous line to disk and change term title to show user@host
-PROMPT_COMMAND='history -a; echo -ne "\033]0;${USER}@${HOSTNAME}:${PWD/#$HOME/~}\007"'
-
 
 #--------------------------
 # Shell Options
@@ -70,7 +63,7 @@ export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls:lo:h:cl:la:su:ll' 
 #
 # Whenever displaying the prompt, write the previous line to disk
-# export PROMPT_COMMAND="history -a"
+export PROMPT_COMMAND="history -a"
 
 # Display date/time command was executed
 export HISTTIMEFORMAT=': %Y-%m-%d_%H:%M:%S; '
@@ -151,12 +144,6 @@ fi
 #--------------------------
 # Environment variables
 #--------------------------
-export GROOVY_HOME=/home/crogers/tools/groovy/latest
-export JAVA_HOME=/home/crogers/tools/java/jdk1.7.0_25
-export RDECK_BASE=/home/crogers/tools/rundeck
-
-
-PATH=$PATH:$HOME/bin:$GROOVY_HOME/bin:$JAVA_HOME/bin
 
 PATH=$(echo -n $PATH | awk -vRS=: -vORS= '!a[$0]++ {if (NR>1) printf(":"); printf("%s", $0) }' )
 export PATH

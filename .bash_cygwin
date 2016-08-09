@@ -3,8 +3,20 @@
 #-----------------
 # Environment variables
 #-----------------
+export TERM=xterm
+# Whenever displaying the prompt, write the previous line to disk and change term title to show user@host when in ssh session
+PROMPT_COMMAND='history -a; echo -ne "\033]0;${USER}@${HOSTNAME}:${PWD/#$HOME/~}\007"'
+
 # Required for colored manpages to work
 export GROFF_NO_SGR=1
+
+export GROOVY_HOME=/home/crogers/tools/groovy/latest
+export JAVA_HOME=/home/crogers/tools/java/jdk1.7.0_25
+export RDECK_BASE=/home/crogers/tools/rundeck
+
+
+PATH=$PATH:$HOME/bin:$GROOVY_HOME/bin:$JAVA_HOME/bin
+
 
 #-----------------
 # Aliases
