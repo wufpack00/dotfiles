@@ -1,0 +1,28 @@
+#http://quenenni.domainepublic.net/screenrc.txt
+
+# make the shell in every window a login shell
+shell -$SHELL
+
+# Turn off that annoying start up message
+startup_message off
+
+# turn off visual bell
+vbell off
+
+# define number of scrollback lines
+defscrollback 20000
+
+# Window list at the bottom. hostname, centered tabs and redmarked active windows:
+hardstatus on  
+hardstatus alwayslastline  
+hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a " 
+
+#default title
+#shelltitle "shell"
+shelltitle "$ |bash"
+
+# create 2 windows by default
+# syntax: screen -t label order command
+# note: last screen created gets focus
+screen -t ssh 1
+screen -t local 0

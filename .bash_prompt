@@ -1,0 +1,36 @@
+# .bash_prompt
+
+if [ -f "${HOME}/.git-completion.bash" ]; then
+   	source "${HOME}/.git-completion.bash"
+fi
+
+if [ -f "${HOME}/.git-prompt.sh" ]; then
+   	source "${HOME}/.git-prompt.sh"
+
+	GIT_PS1_SHOWDIRTYSTATE=true
+
+	# include git branch name in prompt
+	export PS1=$GREEN"[\u@\h:"$ORANGE"\w"'$(
+    	if [[ $(__git_ps1) =~ \*\)$ ]] ; then
+       	 	# a file has been modified but not added
+       	 	echo "'$YELLOW'"$(__git_ps1 " (%s)")
+    	elif [[ $(__git_ps1) =~ \+\)$ ]] ; then
+       	 	# a file has been added, but not commited
+       	 	echo "'$MAGENTA'"$(__git_ps1 " (%s)")
+    	else
+    		# the state is clean, changes are commited
+       	 	echo "'$CYAN'"$(__git_ps1 " (%s)")
+    	fi)'$GREEN"""] $LIGHT_GRAY" 
+else
+
+export PS1=$PROMPT_COLOR'[\u@\h:'$ORANGE'\w'$PROMPT_COLOR'] '$LIGHT_GRAY
+#export PS1='[\u@\h:\w]'
+# make prompt green 
+#export PS1=$GREEN'[\u@\h:'$ORANGE'\w'$GREEN'] '$LIGHT_GRAY
+# make prompt red on prod environment
+#export PS1=$RED'[\u@\h:'$ORANGE'\w'$RED'] '$LIGHT_GRAY
+# yellow prompt
+#export PS1=$YELLOW'[\u@\h:'$ORANGE'\w'$YELLOW'] '$LIGHT_GRAY
+# fuschia prompt 
+#export PS1=$CYAN'[\u@\h:'$ORANGE'\w'$CYAN'] '$LIGHT_GRAY
+fi

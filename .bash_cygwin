@@ -1,0 +1,14 @@
+# .bash_cygwin
+
+#-----------------
+# Environment variables
+#-----------------
+# Required for colored manpages to work
+export GROFF_NO_SGR=1
+
+#-----------------
+# Aliases
+#-----------------
+alias cs='cygstart'
+# open windows explorer in current directory
+alias open='/cygdrive/c/Windows/explorer.exe /e,`cygpath -wa "$1"`'

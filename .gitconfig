@@ -1,0 +1,19 @@
+[user]
+	name = 
+	email = 
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	sts = status -s
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	brieflog = log --graph --abbrev-commit --decorate
+	visual = !gitk
+	blog = !"git brieflog"
+    ll = !"git log --graph --oneline --decorate --date=relative --all"
+	alias = !"git config -l | grep alias | cut -c 7- | sort"
+	ld = log --pretty=format:'%C(red)%h %Cgreen%ad%C(yellow)%d %Creset%s%C(bold blue) [%cn]%Creset' --decorate --date=short
+	who = shortlog -s --
+	ls = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset' --abbrev-commit --date=relative
