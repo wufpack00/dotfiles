@@ -126,6 +126,13 @@ if [ -f "${HOME}/.bash_functions" ]; then
   source "${HOME}/.bash_functions"
 fi
 
+#--------------------------
+# Auto-complete
+#--------------------------
+if [ -f "${HOME}/.bash_completion" ]; then
+  source "${HOME}/.bash_completion"
+fi
+
 #-----------
 # Cygwin-specific
 #-----------
