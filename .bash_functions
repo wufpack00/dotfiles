@@ -209,3 +209,15 @@ function h() {
         history | grep "$@"
     fi
 }
+
+function screen_func {
+    if [ -z "$1" ]
+    then
+        screen
+    else
+        screen -c ~/.screenrc-$1
+    fi
+}
+
+
+alias screen=screen_func
