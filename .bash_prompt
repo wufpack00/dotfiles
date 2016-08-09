@@ -1,10 +1,12 @@
 # .bash_prompt
 
 if [ -f "${HOME}/.git-completion.bash" ]; then
+    # https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
    	source "${HOME}/.git-completion.bash"
 fi
 
 if [ -f "${HOME}/.git-prompt.sh" ]; then
+    # https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
    	source "${HOME}/.git-prompt.sh"
 
 	GIT_PS1_SHOWDIRTYSTATE=true
