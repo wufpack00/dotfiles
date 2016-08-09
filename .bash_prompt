@@ -22,15 +22,5 @@ if [ -f "${HOME}/.git-prompt.sh" ]; then
        	 	echo "'$CYAN'"$(__git_ps1 " (%s)")
     	fi)'$GREEN"""] $LIGHT_GRAY" 
 else
-
-export PS1=$PROMPT_COLOR'[\u@\h:'$ORANGE'\w'$PROMPT_COLOR'] '$LIGHT_GRAY
-#export PS1='[\u@\h:\w]'
-# make prompt green 
-#export PS1=$GREEN'[\u@\h:'$ORANGE'\w'$GREEN'] '$LIGHT_GRAY
-# make prompt red on prod environment
-#export PS1=$RED'[\u@\h:'$ORANGE'\w'$RED'] '$LIGHT_GRAY
-# yellow prompt
-#export PS1=$YELLOW'[\u@\h:'$ORANGE'\w'$YELLOW'] '$LIGHT_GRAY
-# fuschia prompt 
-#export PS1=$CYAN'[\u@\h:'$ORANGE'\w'$CYAN'] '$LIGHT_GRAY
+    export PS1=$PROMPT_COLOR'[\u@\h:'$ORANGE'\w'$PROMPT_COLOR'] '$LIGHT_GRAY
 fi
