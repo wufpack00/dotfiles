@@ -4,6 +4,7 @@ source $HOME/.screenrc
 
 # default windows
 # syntax: screen -t label order command
+# example ssh: screen -t servername 7 ssh servername
 screen -t local 1
 screen -t ssh 2
 
