@@ -86,6 +86,7 @@ export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode - cyan
 #--------------------------
 # Colors
 #--------------------------
+RED="\[\033[0;31m\]"
 MAGENTA="\[\033[0;35m\]"
 YELLOW="\[\033[0;33m\]"
 BLUE="\[\033[34m\]"
