@@ -3,7 +3,6 @@
 	email = 
 [core]
 	autocrlf = true
-	email = 
 [alias]
 	co = checkout
 	br = branch
