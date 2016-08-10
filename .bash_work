@@ -17,21 +17,21 @@ THISHOST=$(hostname -s)
 # Color command prompt based on environment
 #--------------
 
-#if [[ $HOSTNAME =~ ncu* ]]
-if [[ $UIT_SERVERS == *"$THISHOST"* ]]
-then
+# determine server environment by either defined list or starts-with naming convention
+if [[ $UIT_SERVERS == *"$THISHOST"* ]] || [[ $THISHOST == ncu* ]] ; then
+    # prompts in uit are purple
     PROMPT_COLOR=$MAGENTA
-#elif [[ $HOSTNAME =~ ncp* ]]
-elif [[ $PROD_SERVERS == *"$THISHOST"* ]]
-then
+elif [[ $PROD_SERVERS == *"$THISHOST"* ]] || [[ $THISHOST == ncp* ]] ; then
+    # prompts in prod are red
     PROMPT_COLOR=$RED
-elif [[ $SANDBOX_SERVERS == *"$THISHOST"* ]]
-then
+elif [[ $SANDBOX_SERVERS == *"$THISHOST"* ]] || [[ $THISHOST == sb* ]] ; then
+    # prompts in sandbox are yellow
     PROMPT_COLOR=$YELLOW
-elif [[ $DR_SERVERS == *"$THISHOST"* ]]
-then
+elif [[ $THISHOST == az* ]] ; then
+    # prompts in sandbox are light blue
     PROMPT_COLOR=$CYAN
 else
+    # no color in dev environments
     PROMPT_COLOR=$LIGHT_GRAY
 fi
 
