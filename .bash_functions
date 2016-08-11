@@ -49,8 +49,8 @@ cd_func ()
   
   #
   # List directory contents upon successful 'cd'
-  ls -FlAhp --color=always
-
+  # Using custom alias to ensure os-compatibility
+  ll
   #
   # Trim down everything beyond 11th entry
   popd -n +11 2>/dev/null 1>/dev/null
@@ -221,3 +221,9 @@ function screen_func {
 
 
 alias screen=screen_func
+
+# Show headers from http request
+httpHeaders () { /usr/bin/curl -I -L $@ ; }   
+
+# Download a web page and show info on what took time
+httpDebug () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }

@@ -121,13 +121,6 @@ if [ -f "${HOME}/.bash_aliases" ]; then
 fi
 
 #--------------------------
-# Functions
-#--------------------------
-if [ -f "${HOME}/.bash_functions" ]; then
-  source "${HOME}/.bash_functions"
-fi
-
-#--------------------------
 # Auto-complete
 #--------------------------
 if [ -f "${HOME}/.bash_completion" ]; then
@@ -135,10 +128,24 @@ if [ -f "${HOME}/.bash_completion" ]; then
 fi
 
 #-----------
+# MacOS-specific
+#-----------
+if [ -f "${HOME}/.bash_macosx" ]; then
+    source "${HOME}/.bash_macosx"
+fi
+
+#-----------
 # Cygwin-specific
 #-----------
 if [ -f "${HOME}/.bash_cygwin" ]; then
     source "${HOME}/.bash_cygwin"
+fi
+
+#--------------------------
+# Functions
+#--------------------------
+if [ -f "${HOME}/.bash_functions" ]; then
+  source "${HOME}/.bash_functions"
 fi
 
 # Umask
@@ -153,7 +160,7 @@ fi
 # Environment variables
 #--------------------------
 
-PATH=$(echo -n $PATH | awk -vRS=: -vORS= '!a[$0]++ {if (NR>1) printf(":"); printf("%s", $0) }' )
+PATH=$(echo -n $PATH | awk -v RS=: -v ORS= '!a[$0]++ {if (NR>1) printf(":"); printf("%s", $0) }' )
 export PATH
 
 unset USERNAME
