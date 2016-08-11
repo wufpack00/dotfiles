@@ -15,9 +15,6 @@ vbell off
 # define number of scrollback lines
 defscrollback 20000
 
-# mouse tracking allows to switch region focus by clicking
-mousetrack on
-
 # Window list at the bottom. hostname, centered tabs and redmarked active windows:
 hardstatus on  
 hardstatus alwayslastline  
