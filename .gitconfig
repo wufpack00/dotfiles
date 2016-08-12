@@ -1,8 +1,6 @@
 [user]
 	name = 
 	email = 
-[core]
-	autocrlf = true
 [alias]
 	co = checkout
 	br = branch
