@@ -127,6 +127,9 @@ if [ -f "${HOME}/.bash_completion" ]; then
   source "${HOME}/.bash_completion"
 fi
 
+if [ -f "${HOME}/.tmux/bash_completion_tmux.sh" ]; then
+  source "${HOME}/.tmux/bash_completion_tmux.sh"
+fi
 #-----------
 # MacOS-specific
 #-----------
