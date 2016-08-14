@@ -128,7 +128,13 @@ if [ -f "${HOME}/.bash_completion" ]; then
 fi
 
 if [ -f "${HOME}/.tmux/bash_completion_tmux.sh" ]; then
+  # https://github.com/Bash-it/bash-it/blob/master/completion/available/tmux.completion.bash
   source "${HOME}/.tmux/bash_completion_tmux.sh"
+fi
+
+if [ -f "${HOME}/.tmuxinator/tmuxinator.bash" ]; then
+    # https://github.com/tmuxinator/tmuxinator
+    source "${HOME}/.tmuxinator/tmuxinator.bash"
 fi
 #-----------
 # MacOS-specific
@@ -167,3 +173,5 @@ PATH=$(echo -n $PATH | awk -v RS=: -v ORS= '!a[$0]++ {if (NR>1) printf(":"); pri
 export PATH
 
 unset USERNAME
+
+tmuxinator start default
