@@ -1,3 +1,4 @@
+# https://github.com/Bash-it/bash-it/blob/master/completion/available/tmux.completion.bash
 # START tmux completion
 # This file is in the public domain
 # See: http://www.debian-administration.org/articles/317 for how to write more.
