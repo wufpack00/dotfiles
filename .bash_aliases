@@ -38,11 +38,16 @@ alias numFiles='echo $(ls -1 | wc -l)'
 alias vless='/usr/share/vim/vim70/macros/less.sh'
 alias view='vi -R'
 
-alias tls='tmux ls'
-alias tkw='tmux kill-window'
-alias tks='tmux kill-session'
-alias msl='mux start default'
-alias msd='mux start dev'
+if [ -f "${HOME}/.tmux.conf" ]; then
+    alias tls='tmux ls'
+    alias tkw='tmux kill-window'
+    alias tks='tmux kill-session'
+fi
+
+if [ -f "${HOME}/.tmuxinator/default.yml" ]; then
+    alias msl='mux start default'
+    alias msd='mux start dev'
+fi
 
 alias td='date +"%Y%m%d"'
 alias ts='date +"%Y%m%d%H%M%S"'

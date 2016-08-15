@@ -63,7 +63,7 @@ export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls:lo:h:cl:la:su:ll' 
 #
 # Whenever displaying the prompt, write the previous line to disk
-export PROMPT_COMMAND="history -a"
+export PROMPT_COMMAND='history -a; echo -ne "\033]0;${USER}@${HOSTNAME}:${PWD/#$HOME/~}\007";'
 
 # Display date/time command was executed
 export HISTTIMEFORMAT=': %Y-%m-%d_%H:%M:%S; '
@@ -174,4 +174,10 @@ export PATH
 
 unset USERNAME
 
-tmuxinator start default
+#--------------------------
+# Start Mux Session
+#--------------------------
+if [ -f "${HOME}/.tmuxinator/default.yml" ]; then
+    tmuxinator start default
+fi
+
