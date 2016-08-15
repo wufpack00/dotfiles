@@ -1,6 +1,11 @@
 #!/bin/bash
 
-SRC_DIR=$HOME/projects/dotfiles
+if [ "$1" == "" ] ; then
+    SRC_DIR=$PWD
+else
+    SRC_DIR=$1
+fi
+
 PARENT_DIR=$(basename $SRC_DIR)
 
 shopt -s dotglob
