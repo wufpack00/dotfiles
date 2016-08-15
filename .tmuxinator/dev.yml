@@ -30,14 +30,14 @@ root: ~/
 windows:
   - local:
   - goofy:
-        layout: main-horizontal
+        layout: 92f1,271x84,0,0[271x49,0,0,3,271x34,0,50,5]
         panes:
             - cmd:
-                - pwd
-                - ls -l | wc -l
+                - ssh goofy
             - logs:
-                - echo "hello"
+                - ssh goofy
+                - tat
   - goofy2:
         layout: main-horizontal
         panes:
-            - hostname
+            - ssh goofy2
