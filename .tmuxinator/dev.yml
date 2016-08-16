@@ -33,10 +33,10 @@ windows:
         layout: 92f1,271x84,0,0[271x49,0,0,3,271x34,0,50,5]
         panes:
             - cmd:
-                - ssh goofy
+                - ssh app01
             - logs:
-                - ssh goofy
-                - tat
+                - ssh app01
+                - tail -f /home/logs/tomcat/apps.$(date +"%Y%m%d")
   - goofy2:
         layout: main-horizontal
         panes:
