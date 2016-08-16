@@ -210,6 +210,9 @@ function h() {
     fi
 }
 
+#-----------
+# Multiplexer 
+#----------
 function screen_func {
     if [ -z "$1" ]
     then
@@ -222,6 +225,21 @@ function screen_func {
 
 alias screen=screen_func
 
+function mux_func {
+    if [ -z "$1" ]
+    then
+        mux start default
+    else
+        mux start $1
+    fi
+}
+
+
+alias mstart=mux_func
+
+#-----------
+# Curl
+#----------
 # Show headers from http request
 httpHeaders () { /usr/bin/curl -I -L $@ ; }   
 

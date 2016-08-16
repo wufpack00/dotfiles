@@ -44,11 +44,6 @@ if [ -f "${HOME}/.tmux.conf" ]; then
     alias tks='tmux kill-session'
 fi
 
-if [ -f "${HOME}/.tmuxinator/default.yml" ]; then
-    alias msl='mux start default'
-    alias msd='mux start dev'
-fi
-
 alias td='date +"%Y%m%d"'
 alias ts='date +"%Y%m%d%H%M%S"'
 alias vi='vim'
