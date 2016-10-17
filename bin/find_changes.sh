@@ -9,8 +9,10 @@ fi
 PARENT_DIR=$(basename $SRC_DIR)
 
 shopt -s dotglob
+
 recurse() {
-for file in $1/* ; do
+  # $1 = directory passed as argument to function
+  for file in $1/* ; do
 
     filename=$(basename "$file")
     dirname=$(basename $(dirname "$file"))
@@ -28,7 +30,7 @@ for file in $1/* ; do
             diff -q $file ${HOME}/$filename
         fi
     fi
-done
+  done
 }
 
 recurse $SRC_DIR
