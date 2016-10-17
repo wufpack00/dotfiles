@@ -1,0 +1,4 @@
+Vagrant.configure(2) do |config|
+  # execute shell script prior to provisioning any box to install my minimum required packages 
+  config.vm.provision "shell", path: "~/.vagrant.d/scripts/provision"
+end

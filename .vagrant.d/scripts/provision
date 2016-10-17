@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# default applied to all boxes; before the box's own provisioning is done
+
+# prevent dialogs and use default values instead
+export DEBIAN_FRONTEND=noninteractive
+
+# update everything
+apt-get update > /dev/null
+
+# install these basic required packages
+apt-get -y install tmux vim git-core ruby
+
+# install tmux session manager - https://github.com/tmuxinator/tmuxinator
+gem install tmuxinator
+
+# switch to vagrant user and pull down copy of my preferred dot files
+su -c "git clone https://github.com/wufpack00/dotfiles.git" vagrant
+
+# switch to vagrant user and execute script to setup dot files
+su -c "cd /home/vagrant/dotfiles && ./bin/bootstrap.sh" vagrant
