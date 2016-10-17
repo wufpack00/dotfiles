@@ -3,7 +3,7 @@
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 #-----------------------------
 
-#set -x;
+set -x;
 
 CORE_BASH=".bashrc .bash_aliases .bash_prompt .bash_completion .bash_functions .bash_profile"
 CYGWIN_BASH=".bash_cygwin"
@@ -67,10 +67,12 @@ mkdir -p $BACKUP_DIR
 # change to the dotfiles directory
 cd $SOURCE_DIR
 
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
+# move any existing dotfiles in homedir to backup directory, then create symlinks 
 for file in $CONFIG_FILES; do
-   if [ -f "~/$file" ] ; then
+   if [ -f ~/$file ] || [ -L ~/$file ] ; then
         mv ~/$file $BACKUP_DIR/
+    else
+        echo "$file does not exist"
    fi
    ln -s $SOURCE_DIR/$file ~/$file
 done
