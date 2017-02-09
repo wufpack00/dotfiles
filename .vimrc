@@ -12,7 +12,7 @@ set showcmd             " Show partial commands in the last line of the screen
 set ignorecase          " case insensitive search, except when using capitals
 set smartcase           " case insensitive patterns, when lowercase is used
 set smarttab            " smart tabulation and backspace
-set autoindent
+"set autoindent
 set showmode            " Show the current mode
 set showmatch           " show matching braces
 set hlsearch            " highlight searches
