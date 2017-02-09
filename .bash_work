@@ -30,6 +30,9 @@ elif [[ $SANDBOX_SERVERS == *"$THISHOST"* ]] || [[ $THISHOST == sb* ]] ; then
 elif [[ $THISHOST == az* ]] ; then
     # prompts in sandbox are light blue
     PROMPT_COLOR=$CYAN
+elif [[ $THISHOST == *CROGERS* ]] ; then
+    # prompts in localhost are green
+    PROMPT_COLOR=$GREEN
 else
     # no color in dev environments
     PROMPT_COLOR=$LIGHT_GRAY
