@@ -2,18 +2,33 @@
 	name = 
 	email = 
 [alias]
-	co = checkout
+	alias = !git config -l | grep alias | cut -c 7- | sort
 	br = branch
+	co = checkout
+	cob = checkout -b
+	cp = cherry-pick
 	ci = commit
 	st = status
 	sts = status -s
+	cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
+	staged = diff --cached
 	unstage = reset HEAD --
+	new-task = !git fetch origin --prune && git co master && git merge origin/master && git checkout -b
+	update = pull --rebase --prune origin master
+	current-branch = symbolic-ref --short HEAD
+	upstream = !git config --get branch.$(git current-branch).remote || echo origin
+	publish = !git push -u origin $(git current-branch)
+	unpublish = !git push origin :$(git current-branch)
+	branch-clean = "!f() { git branch --merged ${1-master} | grep -v ${1-master}$ | xargs -r git branch -d; }; f"
+	branch-done = "!f() { git checkout ${1-master} && git update && git branch-clean ${1-master}; }; f"
 	last = log -1 HEAD
 	brieflog = log --graph --abbrev-commit --decorate
 	visual = !gitk
-	blog = !"git brieflog"
-    ll = !"git log --graph --oneline --decorate --date=relative --all"
-	alias = !"git config -l | grep alias | cut -c 7- | sort"
+	blog = !git brieflog
+	ll = !git log --graph --oneline --decorate --date=relative --all
 	ld = log --pretty=format:'%C(red)%h %Cgreen%ad%C(yellow)%d %Creset%s%C(bold blue) [%cn]%Creset' --decorate --date=short
+	tree = log --graph --full-history --all --color --date=short --pretty=format:\"%Cred%x09%h %Creset%ad%Cgreen%d %Creset %s %C(bold)(%an)%Creset\"
 	who = shortlog -s --
 	ls = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset' --abbrev-commit --date=relative
+[fetch]
+	prune = true
