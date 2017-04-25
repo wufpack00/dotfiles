@@ -162,8 +162,8 @@ alias mountReadWrite='/sbin/mount -uw /'    # mountReadWrite:   For use when boo
 #   finderShowHidden:   Show hidden files in Finder
 #   finderHideHidden:   Hide hidden files in Finder
 #   -------------------------------------------------------------------
-    alias showHidden='defaults write com.apple.finder ShowAllFiles TRUE'
-    alias hideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
+    alias showHidden='defaults write com.apple.finder AppleShowAllFiles TRUE;killall Finder'
+    alias hideHidden='defaults write com.apple.finder AppleShowAllFiles FALSE;killall Finder'
 
 #   cleanupLS:  Clean up LaunchServices to remove duplicates in the "Open With" menu
 #   -----------------------------------------------------------------------------------
@@ -172,3 +172,4 @@ alias mountReadWrite='/sbin/mount -uw /'    # mountReadWrite:   For use when boo
 #    screensaverDesktop: Run a screensaver on the Desktop
 #   -----------------------------------------------------------------------------------
     alias screensaverDesktop='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background'
+
