@@ -3,19 +3,22 @@
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 #-----------------------------
 
-set -x;
+#set -x;
 
-CORE_BASH=".bashrc .bash_aliases .bash_prompt .bash_completion .bash_functions .bash_profile"
-CYGWIN_BASH=".bash_cygwin"
-MACOS_BASH=".bash_macos"
-WORK_BASH=".bash_work"
-TMUX_CONFIG=".tmux*"
-VIM_CONFIG=".vim*"
-GIT_CONFIG=".gitconfig"
+readonly CURRENT_TIMESTAMP=$(date +"%Y%m%d%H%M%S")
+
+readonly CORE_BASH=".bashrc .bash_aliases .bash_prompt .bash_completion .bash_functions .bash_profile"
+readonly CYGWIN_BASH=".bash_cygwin"
+readonly MACOS_BASH=".bash_macos"
+readonly WORK_BASH=".bash_work"
+readonly TMUX_CONFIG=".tmux*"
+readonly VIM_CONFIG=".vim*"
+readonly GIT_CONFIG=".gitconfig"
 
 # default to only core bash, vim and git dot files
 CONFIG_FILES="$CORE_BASH $VIM_CONFIG $GIT_CONFIG"
 
+# options for determing which files to include
 while getopts ":acmtwh" FLAG
 do
     case $FLAG in
@@ -28,7 +31,13 @@ do
             CONFIG_FILES="$CONFIG_FILES $CYGWIN_BASH"
             ;;
         h)
-            echo "Usage is ?? (at best)"
+            echo "Usage: bootstrap.sh [OPTION] <source-dir:~/dotfiles> <target-dir:~>"
+            echo "  -a      Include all files"
+            echo "  -c      Include default + cygwin files"
+            echo "  -m      Include default + macos files"
+            echo "  -t      Include default + tmux files"
+            echo "  -w      Include default + work files"
+            echo "  -h      Display this message"
             exit
             ;;
         m)
@@ -56,10 +65,10 @@ shift $((OPTIND-1))
 # remove any duplicate entries 
 CONFIG_FILES=$( echo "$CONFIG_FILES" | xargs -n1 | sort -u | xargs)
 
-CURRENT_TIMESTAMP=$(date +"%Y%m%d%H%M%S")
-SOURCE_DIR=~/dotfiles                    
-BACKUP_DIR=~/dotfiles_$CURRENT_TIMESTAMP   
-
+# must be defined after options are read
+readonly SOURCE_DIR=${1:-~/dotfiles}
+readonly TARGET_DIR=${2:-~}
+readonly BACKUP_DIR=$TARGET_DIR/dotfiles_$CURRENT_TIMESTAMP   
 
 # create a backup directory for existing files
 mkdir -p $BACKUP_DIR
@@ -69,12 +78,18 @@ cd $SOURCE_DIR
 
 # move any existing dotfiles in homedir to backup directory, then create symlinks 
 for file in $CONFIG_FILES; do
-   if [ -f ~/$file ] || [ -L ~/$file ] ; then
-        mv ~/$file $BACKUP_DIR/
+   if [ -f $TARGET_DIR/$file ] || [ -L $TARGET_DIR/$file ] ; then
+        mv $TARGET_DIR/$file $BACKUP_DIR/
     else
         echo "$file does not exist"
    fi
-   ln -s $SOURCE_DIR/$file ~/$file
+
+    if [ $file == "$WORK_BASH" ] ; then
+        # don't create symlink for .bash_work since it is template
+        cp $SOURCE_DIR/$file $TARGET_DIR/$file
+    else
+        ln -s $SOURCE_DIR/$file $TARGET_DIR/$file
+    fi
 done
 
-source ~/.bashrc
+source $TARGET_DIR/.bashrc
