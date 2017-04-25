@@ -3,6 +3,17 @@ My preferred bash config
 
 Many thanks to all the bloggers, coders, github-ers, etc. that have provided countless examples for me to use as a starting point.
 
+**Initial Setup**
+
+1. Clone repo into home directory
+2. Execute bootstrap script to backup existing dotfiles and create symlinks to these
+~~~~
+$> git clone git@github.com:wufpack00/dotfiles.git
+$> ./dotfiles/bin/bootstrap.sh
+~~~~
+
+At this time, not all config files are included as part of the bootstrap.sh script setup.
+
 **Cygwin**
 
 1. Down and install cygwin
