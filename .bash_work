@@ -11,7 +11,11 @@ STAGE_SERVERS="st01 st02"
 TEST_SERVERS="test01 test02"
 DEV_SERVERS="dev01 dev02"
 
-THISHOST=$(hostname -s)
+THISHOST=$(hostname -s 2> /dev/null)
+if [ -z "$THISHOST" ] ; then
+    # try without the s option since gnu coreutils (used by github4windows) doesn't support it
+    THISHOST=$(hostname)
+fi
 
 #--------------
 # Color command prompt based on environment
