@@ -85,6 +85,11 @@ func ()
     done | tr '\032' " "
 }
 
+# Check if a program exists in shell
+function command_exists() {
+    command -v $1 >/dev/null 2>&1
+}
+
 # Extract zipped files based on file type
 extract () {
     if [ -f $1 ] ; then

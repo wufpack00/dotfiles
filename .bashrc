@@ -178,7 +178,6 @@ unset USERNAME
 #--------------------------
 # Start Mux Session
 #--------------------------
-if [ -f "${HOME}/.tmuxinator/default.yml" ]; then
+if command_exists tmuxinator && command_exists ruby && [ -f "${HOME}/.tmuxinator/default.yml" ] ; then
     tmuxinator start default
 fi
-
