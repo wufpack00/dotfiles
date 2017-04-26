@@ -41,7 +41,7 @@ do
             exit
             ;;
         m)
-            echo "Including macos config"
+            echo "Including macosx config"
             CONFIG_FILES="$CONFIG_FILES $MACOS_BASH"
             ;;
         t)
@@ -91,5 +91,8 @@ for file in $CONFIG_FILES; do
         ln -s $SOURCE_DIR/$file $TARGET_DIR/$file
     fi
 done
+
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash >> ~/.git-completion.bash
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh >> ~/.git-prompt.sh
 
 source $TARGET_DIR/.bashrc
