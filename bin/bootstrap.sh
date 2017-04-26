@@ -9,7 +9,7 @@ readonly CURRENT_TIMESTAMP=$(date +"%Y%m%d%H%M%S")
 
 readonly CORE_BASH=".bashrc .bash_aliases .bash_prompt .bash_completion .bash_functions .bash_profile"
 readonly CYGWIN_BASH=".bash_cygwin"
-readonly MACOS_BASH=".bash_macos"
+readonly MACOS_BASH=".bash_macosx"
 readonly WORK_BASH=".bash_work"
 readonly TMUX_CONFIG=".tmux*"
 readonly VIM_CONFIG=".vim*"
