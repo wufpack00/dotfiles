@@ -59,3 +59,7 @@ endif
 if match($TERM, "screen")!=-1
   set term=xterm
 endif
+
+" add spell checking and automatic wrapping at 72 columns to git commit
+" messages
+autocmd Filetype gitcommit setlocal spell textwidth=72
