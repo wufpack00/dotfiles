@@ -1,4 +1,31 @@
-# MacOS files
-*.DS_Store
-.AppleDouble
-.LSOverride
+# Compiled
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Temp files 
+*.swp
+*.swo
+*~
+
+# Compressed files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Log files
+*.log
+
+# OS generated 
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
