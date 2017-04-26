@@ -2,7 +2,12 @@
     # store user.name and user.email here
     path = ~/.gitconfig.local
 [alias]
+    # show list of all configured aliases
 	alias = !git config -l | grep alias | cut -c 7- | sort
+
+    #######################
+    # shortened commands
+    ########################
 	br = branch
 	co = checkout
 	cob = checkout -b
@@ -10,21 +15,44 @@
 	ci = commit
 	st = status
 	sts = status -s
+
+    # remove remote branch references that no longer exist, cleanup unnecessary git files, remove untracked files from the working tree and clear out your stash
 	cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
+
     # view list of files staged for the next commit
 	staged = diff --cached
+
+    # Unstage any files that have been added to the staging area
 	unstage = reset HEAD --
+    
     # view list of files to be pushed to remote
     topush = !git diff --stat --cached origin/master
     topushdiff = !git diff --cached origin/master
+
+    #######################
+    # branches
+    ########################
 	new-task = !git fetch origin --prune && git co master && git merge origin/master && git checkout -b
+    # get working copy up to date with origin - run in feature branch regularly
 	update = pull --rebase --prune origin master
+
+    # print name of current working branch
 	current-branch = symbolic-ref --short HEAD
+    # print the name of the current upstream tracking branch
 	upstream = !git config --get branch.$(git current-branch).remote || echo origin
+    # push the current branch to the remote "origin", and set it to track the upstream branch
 	publish = !git push -u origin $(git current-branch)
+    # delete the remote version of the current branch
 	unpublish = !git push origin :$(git current-branch)
+    # delete every branch that been merged into master (except master)
 	branch-clean = "!f() { git branch --merged ${1-master} | grep -v ${1-master}$ | xargs -r git branch -d; }; f"
+    # switch to master, bring master up to speed with origin, delete all local brances already merged into master
 	branch-done = "!f() { git checkout ${1-master} && git update && git branch-clean ${1-master}; }; f"
+   
+ 
+    #######################
+    # history
+    ########################
 	last = log -1 HEAD
 	brieflog = log --graph --abbrev-commit --decorate
 	visual = !gitk
