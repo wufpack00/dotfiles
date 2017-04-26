@@ -1,6 +1,6 @@
-[user]
-	name = 
-	email = 
+[include]
+    # store user.name and user.email here
+    path = ~/.gitconfig.local
 [alias]
 	alias = !git config -l | grep alias | cut -c 7- | sort
 	br = branch
@@ -11,8 +11,12 @@
 	st = status
 	sts = status -s
 	cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
+    # view list of files staged for the next commit
 	staged = diff --cached
 	unstage = reset HEAD --
+    # view list of files to be pushed to remote
+    topush = !git diff --stat --cached origin/master
+    topushdiff = !git diff --cached origin/master
 	new-task = !git fetch origin --prune && git co master && git merge origin/master && git checkout -b
 	update = pull --rebase --prune origin master
 	current-branch = symbolic-ref --short HEAD
