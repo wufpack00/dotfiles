@@ -8,7 +8,7 @@
 export GROFF_NO_SGR=1
 
 export GROOVY_HOME=/home/crogers/tools/groovy/latest
-export JAVA_HOME=/home/crogers/tools/java/jdk1.7.0_25
+export JAVA_HOME=/home/crogers/tools/java/jdk-7u80
 export RDECK_BASE=/home/crogers/tools/rundeck
 
 
