@@ -5,8 +5,8 @@ Many thanks to all the bloggers, coders, github-ers, etc. that have provided cou
 
 **Install Cygwin**
 
-1. Down and install cygwin (select lynx as package to install)
-2. Install package manager
+1. Down and install [cygwin](https://www.cygwin.com/) (select lynx as package to install)
+2. Install [apt-cyg](https://github.com/transcode-open/apt-cyg) package manager
 ~~~~
 $> lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg > apt-cyg
 $> install apt-cyg /bin
@@ -17,7 +17,7 @@ $> install apt-cyg /bin
 $> apt-cyg install wget curl tar openssh openssl make vim gcc-core git screen tmux ruby 
 ~~~~
 
-4. Install tumxinator - https://github.com/tmuxinator/tmuxinator
+4. Install [tumxinator](https://github.com/tmuxinator/tmuxinator)
 ~~~~
 $> gem install tmuxinator
 ~~~~
@@ -38,7 +38,7 @@ At this time, not all config files are included as part of the bootstrap.sh scri
 
 **Mac OS X**
 
-1. Install package manager - http://brew.sh/
+1. Install [brew](http://brew.sh/) package manager
 
 ~~~~
 $> /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
