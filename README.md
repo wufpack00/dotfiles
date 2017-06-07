@@ -16,7 +16,7 @@ At this time, not all config files are included as part of the bootstrap.sh scri
 
 **Cygwin**
 
-1. Down and install cygwin
+1. Down and install cygwin (select lynx as package to install)
 2. Install package manager
 ~~~~
 $> lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg > apt-cyg
@@ -25,7 +25,7 @@ $> install apt-cyg /bin
 
 3. Install tools
 ~~~~
-$> apt-cyg install git screen tmux ruby
+$> apt-cyg install wget curl tar openssh openssl make vim gcc-core git screen tmux ruby 
 ~~~~
 
 4. Install tumxinator - https://github.com/tmuxinator/tmuxinator
