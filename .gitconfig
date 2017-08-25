@@ -30,6 +30,18 @@
     topushdiff = !git diff --cached origin/master
 
     #######################
+    # diff files
+    ########################
+    # show diff of specific commit
+    diffcommit = "!f() { git difftool --dir $1^..$1; }; f"
+    # show directory changes
+    diffd = difftool -d
+    # show diff of files that are staged
+    diffstaged = difftool -d --staged
+    # show diff of stashed files
+    stashview = "!f() { git difftool -d stash@{$1}^..stash@{$1}; }; f"
+
+    #######################
     # branches
     ########################
 	new-task = !git fetch origin --prune && git co master && git merge origin/master && git checkout -b
@@ -48,12 +60,20 @@
 	branch-clean = "!f() { git branch --merged ${1-master} | grep -v ${1-master}$ | xargs -r git branch -d; }; f"
     # switch to master, bring master up to speed with origin, delete all local brances already merged into master
 	branch-done = "!f() { git checkout ${1-master} && git update && git branch-clean ${1-master}; }; f"
-   
+  
+    diffcommit = "!f() { git difftool --dir $1^..$1; }; f"
+    diffd = difftool -d
+    diffstaged = difftool -d --staged
+
+    stashview = "!f() { git difftool -d stash@{$1}^..stash@{$1}; }; f"
  
     #######################
     # history
     ########################
-	last = log -1 HEAD
+    # show last N (default = 1) commits
+	last = "!f() { git log --pretty=format:'%C(red)%h %Cgreen%ad%C(yellow)%d %Creset%s%C(bold blue) [%cn]%Creset' --decorate --date=short --no-merges -${1-1} HEAD; }; f"
+    # show my last 10 commits
+    mylast = !git log --author=$(git config --get user.name) --oneline --no-merges -10
 	brieflog = log --graph --abbrev-commit --decorate
 	visual = !gitk
 	blog = !git brieflog
