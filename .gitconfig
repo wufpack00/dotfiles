@@ -61,12 +61,6 @@
     # switch to master, bring master up to speed with origin, delete all local brances already merged into master
 	branch-done = "!f() { git checkout ${1-master} && git update && git branch-clean ${1-master}; }; f"
   
-    diffcommit = "!f() { git difftool --dir $1^..$1; }; f"
-    diffd = difftool -d
-    diffstaged = difftool -d --staged
-
-    stashview = "!f() { git difftool -d stash@{$1}^..stash@{$1}; }; f"
- 
     #######################
     # history
     ########################
