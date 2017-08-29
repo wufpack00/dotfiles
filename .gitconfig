@@ -46,7 +46,7 @@
     ########################
 	new-task = !git fetch origin --prune && git co master && git merge origin/master && git checkout -b
     # get working copy up to date with origin - run in feature branch regularly
-	update = pull --rebase --prune origin master
+    update = "!f() { git pull --rebase --prune origin ${1-master}; }; f"
 
     # print name of current working branch
 	current-branch = symbolic-ref --short HEAD
@@ -71,6 +71,8 @@
 	brieflog = log --graph --abbrev-commit --decorate
 	visual = !gitk
 	blog = !git brieflog
+    # grep history for keyword
+    glog = "!f() { git log --oneline --reverse --pretty=\"%C(red)%h %Cgreen%ad%C(yellow)%d %Creset%s%C(bold blue) [%cn]%Creset\" --decorate --perl-regexp -i --date=short --grep=$1; }; f"
 	ll = !git log --graph --oneline --decorate --date=relative --all
 	ld = log --pretty=format:'%C(red)%h %Cgreen%ad%C(yellow)%d %Creset%s%C(bold blue) [%cn]%Creset' --decorate --date=short
 	tree = log --graph --full-history --all --color --date=short --pretty=format:\"%Cred%x09%h %Creset%ad%Cgreen%d %Creset %s %C(bold)(%an)%Creset\"
