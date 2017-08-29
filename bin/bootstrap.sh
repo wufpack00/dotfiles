@@ -3,7 +3,7 @@
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 #-----------------------------
 
-#set -x;
+set -x;
 
 readonly CURRENT_TIMESTAMP=$(date +"%Y%m%d%H%M%S")
 
@@ -14,6 +14,15 @@ readonly WORK_BASH=".bash_work"
 readonly TMUX_CONFIG=".tmux*"
 readonly VIM_CONFIG=".vim*"
 readonly GIT_CONFIG=".gitconfig"
+
+# git bash on windows doesn't make creating symlinks easy
+is_windows() { [[ -n "$WINDIR" ]]; }
+
+if is_windows ; then
+    # https://github.com/git-for-windows/git/pull/156
+    export MSYS=winsymlinks:nativestrict
+fi
+
 
 # default to only core bash, vim and git dot files
 CONFIG_FILES="$CORE_BASH $VIM_CONFIG $GIT_CONFIG"
@@ -81,13 +90,14 @@ for file in $CONFIG_FILES; do
    if [ -f $TARGET_DIR/$file ] || [ -L $TARGET_DIR/$file ] ; then
         mv $TARGET_DIR/$file $BACKUP_DIR/
     else
-        echo "$file does not exist"
+        echo "$file does not exist...skipping backup"
    fi
 
     if [ $file == "$WORK_BASH" ] ; then
         # don't create symlink for .bash_work since it is template
         cp $SOURCE_DIR/$file $TARGET_DIR/$file
     else
+        echo "creating symlink for $SOURCE_DIR/$file -> $TARGET_DIR/$file"
         ln -s $SOURCE_DIR/$file $TARGET_DIR/$file
     fi
 done
