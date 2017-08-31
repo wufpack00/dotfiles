@@ -1,20 +1,52 @@
+##############################
 # Functions
-#
-# Some example functions:
-#
-# a) function settitle
-# settitle () 
-# { 
-#   echo -ne "\e]2;$@\a\e]1;$@\a"; 
-# }
-# 
-# b) function cd_func
+##############################
+function executing_env() {
+    local uname="$(uname -s)"
+    local machine="UNKNOWN:$uname"
+    case "$uname" in
+        Linux*)     machine=Linux;;
+        Darwin*)    machine=Mac;;
+        CYGWIN*)    machine=Cygwin;;
+        MINGW*)     machine=MinGw;;
+        *)          machine="UNKNOWN:$uname"
+    esac
+    echo $machine
+}
+
+function is_windows() {
+    if [ "$(executing_env)" == "MinGw" ] ; then
+        return 0
+    fi
+    return 1
+}
+
+function is_cygwin() {
+    if [ "$(executing_env)" == "Cygwin" ] ; then
+        return 0
+    fi
+    return 1
+}
+
+function is_mac() {
+    if [ "$(executing_env)" == "Mac" ] ; then
+        return 0
+    fi
+    return 1
+}
+
+function is_nix() {
+    if [ "$(executing_env)" == "Linux" ] ; then
+        return 0
+    fi
+    return 1
+}
+
 # This function defines a 'cd' replacement function capable of keeping, 
 # displaying and accessing history of visited directories, up to 10 entries.
-# To use it, uncomment it, source this file and try 'cd --'.
 # acd_func 1.0.5, 10-nov-2004
 # Petar Marinov, http:/geocities.com/h2428, this is public domain
-cd_func ()
+function cd_func ()
 {
   local x2 the_new_dir adir index
   local -i cnt
@@ -74,7 +106,7 @@ alias cd=cd_func
 
 
 # List user defined functions (similar to alias command for listing aliases)
-func ()
+function func ()
 {
     local F=`for i in $(declare -F | sed -e 's/declare -f //g'); do echo $i; done| sed -e :a -e 's/^.\{1,25\}$/& /;ta'|tr ' ' '\032'`;
     i=1;
@@ -91,7 +123,7 @@ function command_exists() {
 }
 
 # Extract zipped files based on file type
-extract () {
+function extract () {
     if [ -f $1 ] ; then
         case $1 in
             *.tar.bz2)   tar xvjf $1        ;;
@@ -115,7 +147,7 @@ extract () {
 #
 # Make a directory and change to it
 #
-mkcd() {
+function mkcd() {
   if [ $# -ne 1 ]; then
          echo "Usage: mkcd <dir>"
          return 1
@@ -128,7 +160,7 @@ mkcd() {
 #
 # prints a ruler the size of the terminal window
 #
-ruler() { 
+function ruler() { 
     for s in '....^....|' '1234567890'
     do 
         w=${#s} 
@@ -141,7 +173,7 @@ ruler() {
 #
 # Prints out a long line. Useful for setting a visual flag in your terminal.
 #
-flag(){
+function flag(){
     echo -e  "\e[1;36m[==============="$@"===\
              ($(date +"%A %e %B %Y %H:%M"))\
              ===============]\e[m"
@@ -150,7 +182,7 @@ flag(){
 #
 # Swap two files
 #
-swap(){
+function swap(){
     if [ $# -ne 2 ]
     then
         echo Usage: swap file1 file2
@@ -165,7 +197,7 @@ swap(){
 #
 # Backup file(s)
 #
-dbackup(){
+function dbackup(){
     if [ $# -lt 1 ]
     then
         echo Please supply a file to backup
@@ -182,7 +214,7 @@ dbackup(){
 #
 # print duplicate lines in file
 #
-dupes() { 
+function dupes() { 
     sort "$@" | uniq -d
 }
 
@@ -191,16 +223,16 @@ dupes() {
 # Searching:
 #-----------
 # Find a file under the current directory
-ff () { /usr/bin/find . -name "$@" ; }
+function ff () { /usr/bin/find . -name "$@" ; }
 
 # Find a file whose name starts with a given string
-ffs () { /usr/bin/find . -name "$@"'*' ; }
+function ffs () { /usr/bin/find . -name "$@"'*' ; }
 
 # Find a file whose name ends with a given string
-ffe () { /usr/bin/find . -name '*'"$@" ; }
+function ffe () { /usr/bin/find . -name '*'"$@" ; }
 
 # Find files larger than a certain size (in bytes)
-find_larger() { find . -type f -size +${1}c ; }
+function find_larger() { find . -type f -size +${1}c ; }
 
 #-----------
 # History:
@@ -246,7 +278,7 @@ alias mstart=mux_func
 # Curl
 #----------
 # Show headers from http request
-httpHeaders () { /usr/bin/curl -I -L $@ ; }   
+function httpHeaders () { /usr/bin/curl -I -L $@ ; }   
 
 # Download a web page and show info on what took time
-httpDebug () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
+function httpDebug () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }

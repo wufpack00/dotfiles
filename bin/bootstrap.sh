@@ -3,7 +3,9 @@
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 #-----------------------------
 
-set -x;
+#set -x;
+
+source ../.bash_functions
 
 readonly CURRENT_TIMESTAMP=$(date +"%Y%m%d%H%M%S")
 
@@ -15,14 +17,10 @@ readonly TMUX_CONFIG=".tmux*"
 readonly VIM_CONFIG=".vim*"
 readonly GIT_CONFIG=".gitconfig"
 
-# git bash on windows doesn't make creating symlinks easy
-is_windows() { [[ -n "$WINDIR" ]]; }
-
 if is_windows ; then
     # https://github.com/git-for-windows/git/pull/156
     export MSYS=winsymlinks:nativestrict
 fi
-
 
 # default to only core bash, vim and git dot files
 CONFIG_FILES="$CORE_BASH $VIM_CONFIG $GIT_CONFIG"
