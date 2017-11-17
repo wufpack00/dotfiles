@@ -24,6 +24,7 @@
 
     # Unstage any files that have been added to the staging area
 	unstage = reset HEAD --
+    undo-commit = reset HEAD --hard
     
     # view list of files to be pushed to remote
     topush = !git diff --stat --cached origin/master
@@ -50,6 +51,7 @@
 
     # print name of current working branch
 	current-branch = symbolic-ref --short HEAD
+    #previous-branch = "!f() { git reflog | sed -n 's/.*checkout: moving from .* to \(.*\)/\1/p' | sed '2q;d' ; }; f"
     # print the name of the current upstream tracking branch
 	upstream = !git config --get branch.$(git current-branch).remote || echo origin
     # push the current branch to the remote "origin", and set it to track the upstream branch
@@ -59,7 +61,7 @@
     # delete every branch that been merged into master (except master)
 	branch-clean = "!f() { git branch --merged ${1-master} | grep -v ${1-master}$ | xargs -r git branch -d; }; f"
     # switch to master, bring master up to speed with origin, delete all local brances already merged into master
-	branch-done = "!f() { git checkout ${1-master} && git update && git branch-clean ${1-master}; }; f"
+	branch-done = "!f() { git checkout ${1-master} && git update ${1-master} && git branch-clean ${1-master}; }; f"
   
     #######################
     # history
@@ -67,7 +69,7 @@
     # show last N (default = 1) commits
 	last = "!f() { git log --pretty=format:'%C(red)%h %Cgreen%ad%C(yellow)%d %Creset%s%C(bold blue) [%cn]%Creset' --decorate --date=short --no-merges -${1-1} HEAD; }; f"
     # show my last 10 commits
-    mylast = !git log --author=$(git config --get user.name) --oneline --no-merges -10
+    mylast = "!f() { git log --author=$(git config --get user.name) --oneline --no-merges -${1-10}; }; f"
 	brieflog = log --graph --abbrev-commit --decorate
 	visual = !gitk
 	blog = !git brieflog
