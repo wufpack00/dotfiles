@@ -35,6 +35,7 @@
     ########################
     # show diff of specific commit
     diffcommit = "!f() { git difftool --dir $1^..$1; }; f"
+    dc = !git diffcommit
     # show directory changes
     diffd = difftool -d
     # show diff of files that are staged
