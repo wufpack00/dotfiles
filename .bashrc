@@ -168,6 +168,10 @@ fi
 #--------------------------
 # Environment variables
 #--------------------------
+if [ -f "${HOME}/.aws/env" ]; then
+    source "${HOME}/.aws/env"
+fi
+
 export EDITOR='vim'
 
 PATH=$(echo -n $PATH | awk -v RS=: -v ORS= '!a[$0]++ {if (NR>1) printf(":"); printf("%s", $0) }' )
