@@ -17,7 +17,12 @@ $> install apt-cyg /bin
 $> apt-cyg install wget curl tar openssh openssl make vim gcc-core git screen tmux ruby 
 ~~~~
 
-4. Install [tumxinator](https://github.com/tmuxinator/tmuxinator)
+4. Install [tmux plugin mgr](https://github.com/tmux-plugins/tpm)
+~~~~
+$> git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+~~~~
+
+5. Install [tmuxinator](https://github.com/tmuxinator/tmuxinator)
 ~~~~
 $> gem install tmuxinator
 ~~~~
