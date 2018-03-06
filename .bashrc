@@ -168,8 +168,9 @@ fi
 #--------------------------
 # Environment variables
 #--------------------------
-if [ -f "${HOME}/.aws/env" ]; then
-    source "${HOME}/.aws/env"
+if [ -f "${HOME}/bin/aws_switch" ]; then
+    # set variables for default profile
+    $(${HOME}/bin/aws_switch)
 fi
 
 export EDITOR='vim'
