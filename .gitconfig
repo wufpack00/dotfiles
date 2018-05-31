@@ -70,7 +70,7 @@
     # show last N (default = 1) commits
 	last = "!f() { git log --pretty=format:'%C(red)%h %Cgreen%ad%C(yellow)%d %Creset%s%C(bold blue) [%cn]%Creset' --decorate --date=short --no-merges -${1-1} HEAD; }; f"
     # show my last 10 commits
-    mylast = "!f() { git log --author=$(git config --get user.name) --oneline --no-merges -${1-10}; }; f"
+    mylast = "!f() { git log --author=\"$(git config --get user.name)\" --oneline --no-merges -${1-10}; }; f"
 	brieflog = log --graph --abbrev-commit --decorate
 	visual = !gitk
 	blog = !git brieflog
