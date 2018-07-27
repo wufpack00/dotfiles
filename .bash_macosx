@@ -3,7 +3,7 @@
 #   ------------------------------------------------------------
 #   Set Paths
 #   ------------------------------------------------------------
-    export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$PATH"
+    export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 
 #   Set Default Editor (change 'Nano' to the editor of your choice)
 #   ------------------------------------------------------------

@@ -183,6 +183,7 @@ unset USERNAME
 #--------------------------
 # Start Mux Session
 #--------------------------
-if command_exists tmuxinator && command_exists ruby && [ -f "${HOME}/.tmuxinator/default.yml" ] ; then
+if is_windows && command_exists tmuxinator && command_exists ruby && [ -f "${HOME}/.tmuxinator/default.yml" ] ; then
+    # on macos we use iterm2 with tmux integration instead
     tmuxinator start default
 fi

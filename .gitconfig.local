@@ -1,0 +1,24 @@
+# git settings specific to this local machine
+[project]
+    current-version = 10.5.0
+
+[alias]
+    # gerrit push syntax
+    push-for-snapshot = !git push origin HEAD:refs/for/develop-$(git config --get project.current-version)
+    push-for-milestone = !git push origin HEAD:refs/for/milestone-$(git config --get project.current-version)
+    push-for-release = !git push origin HEAD:refs/drafts/master-$(git config --get project.current-version)
+
+[user]
+    name = <Insert Name>
+    email = <Insert Email> 
+    username = <Insert Username>
+
+[push]
+    default = upstream
+
+[pull]
+    rebase = true
+
+[include]
+    # store diff/merge tool settings here
+    path = ~/.gitconfig.opendiff

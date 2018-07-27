@@ -1,0 +1,15 @@
+[diff]
+    tool = bc
+[difftool]
+    prompt = false
+[difftool "bc"]
+    path = "c:/Program Files/Beyond Compare 4/bcomp.exe"
+    keepbackup = false
+[merge]
+    tool = bc
+[mergetool]
+    prompt = false
+[mergetool "bc"]
+    path = "c:/Program Files/Beyond Compare 4/bcomp.exe"
+    keepbackup = false
+    trustExitCode = true

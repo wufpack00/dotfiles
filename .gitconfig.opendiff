@@ -1,0 +1,15 @@
+[pull]
+    rebase = true
+
+[diff]
+    external = ~/bin/git-opendiff.sh
+
+[difftool]
+    prompt = false
+
+[merge]
+    tool = opendiff
+
+[mergetool]
+    prompt = false
+    keepBackup = false

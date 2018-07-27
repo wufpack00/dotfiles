@@ -12,7 +12,7 @@ set showcmd             " Show partial commands in the last line of the screen
 set ignorecase          " case insensitive search, except when using capitals
 set smartcase           " case insensitive patterns, when lowercase is used
 set smarttab            " smart tabulation and backspace
-"set autoindent
+"set autoindent 
 set showmode            " Show the current mode
 set showmatch           " show matching braces
 set hlsearch            " highlight searches
@@ -63,3 +63,6 @@ endif
 " add spell checking and automatic wrapping at 72 columns to git commit
 " messages
 autocmd Filetype gitcommit setlocal spell textwidth=72
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
