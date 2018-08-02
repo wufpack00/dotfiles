@@ -16,6 +16,10 @@
 	st = status
 	sts = status -s
 
+    # run git command over all subdirectories
+    all = "!f() { find $(git config --get project.checkout-dir) -name '.git' -type d | rev | cut -c6- | rev |  xargs -P10 -I{} git -C {} $@ ; }; f"
+    #all = "!f() { find ~/git-checkouts -name '.git' -type d | sed 's/\/.git//' |  xargs -P10 -I{} git -C {} $1; }; f"
+
     # remove remote branch references that no longer exist, cleanup unnecessary git files, remove untracked files from the working tree and clear out your stash
 	cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
 

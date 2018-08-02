@@ -97,7 +97,11 @@ function EXT_COLOR () { echo -ne "\[\033[38;5;$1m\]"; }
 ORANGE=`EXT_COLOR 172`
 
 # default prompt color
-export PROMPT_COLOR=$GREEN
+if [[ $EUID -eq 0 ]]; then
+    export PROMPT_COLOR=$RED 
+else
+    export PROMPT_COLOR=$GREEN
+fi
 
 #-----------
 # Work specific config
