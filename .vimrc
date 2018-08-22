@@ -66,3 +66,6 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
+
+" treat my custom gitconfig files correctly
+autocmd BufNewFile,BufRead .gitconfig.* set filetype=gitconfig
