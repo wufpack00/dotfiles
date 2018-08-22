@@ -1,3 +1,7 @@
+if ! is_mac ; then
+    return
+fi
+
 # Adapted from https://gist.github.com/natelandau/10654137
 
 #   ------------------------------------------------------------
@@ -25,7 +29,6 @@
 #   -----------------------------
 #   2.  MAKE TERMINAL BETTER
 #   -----------------------------
-alias ll='ls -FlAhpG'
 alias edit='subl'                           # edit:         Opens any file in sublime editor
 alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
 alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up

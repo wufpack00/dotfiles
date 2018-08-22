@@ -42,7 +42,6 @@ At this time, not all config files are included as part of the bootstrap.sh scri
 
 
 **Mac OS X**
-# a tool to install CLI tools without copy/paste
 1. Install [brew](http://brew.sh/) package manager
 
 ~~~~
@@ -51,7 +50,6 @@ $> brew install git
 $> brew install tmux
 $> gem install tmuxinator
 ~~~~
-# a tool to install UI tools
 2. Install [brew-cask](https://caskroom.github.io/) app installer
 
 ~~~~

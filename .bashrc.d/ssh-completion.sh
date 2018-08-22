@@ -1,4 +1,4 @@
-# .bash_completion
+# ssh-completion.sh 
 
 # ssh auto-complete from known_hosts file
 if [ -f "${HOME}/.ssh/known_hosts" ]; then

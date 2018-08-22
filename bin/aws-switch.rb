@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
-require 'inifile'
 
+if(File.file?(File.join(File.expand_path('~'), '.aws', 'config')))
+require 'inifile'
 configs = IniFile.load(File.join(File.expand_path('~'), '.aws', 'config'))
 
 profile_name_input = ARGV[0]
@@ -26,3 +27,5 @@ puts "export AMAZON_ACCESS_KEY_ID=#{id}"
 puts "export AMAZON_SECRET_ACCESS_KEY=#{key}"
 puts "export AWS_ACCESS_KEY=#{id}"
 puts "export AWS_SECRET_KEY=#{key}"
+
+end

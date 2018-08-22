@@ -1,0 +1,9 @@
+# git settings specific to this local machine
+[user]
+    name = <Insert Name>
+    email = <Insert Email> 
+    username = <Insert Username>
+
+[include]
+    # store diff/merge tool settings here
+    path = ~/.gitconfig.d/.gitconfig.opendiff

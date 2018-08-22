@@ -1,13 +1,25 @@
-# .bash_prompt
+#--------------------------
+# Colors
+#--------------------------
+RED="\[\033[0;31m\]"
+MAGENTA="\[\033[0;35m\]"
+YELLOW="\[\033[0;33m\]"
+BLUE="\[\033[34m\]"
+LIGHT_GRAY="\[\033[0;37m\]"
+CYAN="\[\033[0;36m\]"
+GREEN="\[\033[0;32m\]"
+function EXT_COLOR () { echo -ne "\[\033[38;5;$1m\]"; }
+ORANGE=`EXT_COLOR 172`
 
-if [ -f "${HOME}/.git-completion.bash" ]; then
-    # https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
-   	source "${HOME}/.git-completion.bash"
+#--------------------------
+# Colorized Prompt
+#--------------------------
+# default prompt color
+if [[ $EUID -eq 0 ]]; then
+    export PROMPT_COLOR=$RED 
+else
+    export PROMPT_COLOR=$GREEN
 fi
-
-if [ -f "${HOME}/.git-prompt.sh" ]; then
-    # https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
-   	source "${HOME}/.git-prompt.sh"
 
 	GIT_PS1_SHOWDIRTYSTATE=true
 
@@ -23,6 +35,5 @@ if [ -f "${HOME}/.git-prompt.sh" ]; then
     		# the state is clean, changes are commited
        	 	echo "'$CYAN'"$(__git_ps1 " (%s)")
     	fi)'$PROMPT_COLOR"""] $LIGHT_GRAY" 
-else
-    export PS1=$PROMPT_COLOR'[\u@\h:'$ORANGE'\w'$PROMPT_COLOR'] '$LIGHT_GRAY
-fi
+
+PS1='$(show_virtual_env)'$PS1

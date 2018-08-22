@@ -13,7 +13,6 @@ alias mroe='more'
 alias m='more'
 
 alias reload='. $HOME/.bash_profile'
-alias ll='ls -FlAhp --color=always'                       # Preferred 'ls' implementation
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)

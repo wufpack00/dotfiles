@@ -2,7 +2,7 @@
     rebase = true
 
 [diff]
-    external = ~/bin/git-opendiff.sh
+    external = ~/.dotfiles/.gitconfig.d/git-opendiff.sh
 
 [difftool]
     prompt = false
