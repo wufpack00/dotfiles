@@ -6,7 +6,7 @@
 #set -x;
 
 declare -r SCRIPT_PATH=$( cd "$(dirname ${BASH_SOURCE[0]})" > /dev/null; pwd -P )
-source $SCRIPT_PATH/../.bash_functions
+source $SCRIPT_PATH/../.rc.d/get-env.sh
 
 readonly CURRENT_TIMESTAMP=$(date +"%Y%m%d%H%M%S")
 

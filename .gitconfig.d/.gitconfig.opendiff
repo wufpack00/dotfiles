@@ -1,6 +1,3 @@
-[pull]
-    rebase = true
-
 [diff]
     external = ~/.dotfiles/.gitconfig.d/git-opendiff.sh
 
