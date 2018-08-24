@@ -191,3 +191,25 @@ if is_windows && command_exists tmuxinator && command_exists ruby && [ -f "${HOM
     # on macos we use iterm2 with tmux integration instead
     tmuxinator start default
 fi
+
+#------------------
+# python
+#------------------
+# activate virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/git-checkouts
+source /usr/local/bin/virtualenvwrapper.sh
+
+# pip should only run if there is a virtualenv currently activated
+export PIP_REQUIRE_VIRTUALENV=true
+
+# create commands to override pip restriction.
+# use `gpip` or `gpip3` to force installation of
+# a package in the global python environment
+gpip2(){
+   PIP_REQUIRE_VIRTUALENV="" pip2 "$@"
+}
+gpip3(){
+   PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
+}
+eval "$(direnv hook bash)"

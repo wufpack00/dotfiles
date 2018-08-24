@@ -26,3 +26,11 @@ if [ -f "${HOME}/.git-prompt.sh" ]; then
 else
     export PS1=$PROMPT_COLOR'[\u@\h:'$ORANGE'\w'$PROMPT_COLOR'] '$LIGHT_GRAY
 fi
+
+show_virtual_env() {
+  if [ -n "$VIRTUAL_ENV" ]; then
+    echo "($(basename $VIRTUAL_ENV))"
+  fi
+}
+export -f show_virtual_env
+PS1='$(show_virtual_env)'$PS1
