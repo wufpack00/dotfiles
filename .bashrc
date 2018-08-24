@@ -195,6 +195,7 @@ fi
 #------------------
 # python
 #------------------
+if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
 # activate virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/git-checkouts
@@ -213,3 +214,4 @@ gpip3(){
    PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
 }
 eval "$(direnv hook bash)"
+fi
