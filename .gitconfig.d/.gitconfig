@@ -87,7 +87,7 @@
 	ls = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset' --abbrev-commit --date=relative
 
 [core]
-	excludesfile = ~/.gitconfig.d/.gitignore
+	excludesfile = ~/.dotfiles/.gitconfig.d/.gitignore
 
 [fetch]
 	prune = true
