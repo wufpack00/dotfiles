@@ -28,7 +28,8 @@
 
     # Unstage any files that have been added to the staging area
 	unstage = reset HEAD --
-    undo-commit = reset HEAD --hard
+    undo-commit = reset --soft HEAD~1
+    undo-commit-hard = reset HEAD --hard
     
     # view list of files to be pushed to remote
     topush = !git diff --stat --cached origin/master
