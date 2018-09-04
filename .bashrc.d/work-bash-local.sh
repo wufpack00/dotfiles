@@ -1,8 +1,9 @@
 if [ -f "$HOME/.bash.local" ]; then
     source "$HOME/.bash.local"
+    return
 fi
 
-# .bash_work
+# .bash_work template
 
 #--------------
 # Server names by environment
