@@ -69,7 +69,7 @@ function dbackup(){
         echo Please supply a file to backup
         return 1
     fi
-    date=`date +%Y%m%d-%H%M`
+    date=`date +%Y%m%d-%H%M%S`
     for i in "$@"
     do
         echo Backed up $i to $i.$date
