@@ -30,6 +30,8 @@ alias u='clear; cd ..;'
 
 alias cl='clear'
 
+alias qfind="find . -name "                 # qfind:    Quickly search for file
+
 alias lo='logout'
 alias path='echo -e ${PATH//:/\\n}'
 alias psj='ps -ef |grep java'

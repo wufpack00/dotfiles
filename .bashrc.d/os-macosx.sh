@@ -7,24 +7,12 @@ fi
 #   ------------------------------------------------------------
 #   Set Paths
 #   ------------------------------------------------------------
-    export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-
-#   Set Default Editor (change 'Nano' to the editor of your choice)
-#   ------------------------------------------------------------
-    export EDITOR=/usr/bin/vim
+    export PATH="$(brew --prefix gnu-getopt)/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 
 #   Set default blocksize for ls, df, du
 #   from this: http://hints.macworld.com/comment.php?mode=view&cid=24491
 #   ------------------------------------------------------------
     export BLOCKSIZE=1k
-
-#   Add color to terminal
-#   (this is all commented out as I use Mac Terminal Profiles)
-#   from http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
-#   ------------------------------------------------------------
-#   export CLICOLOR=1
-#   export LSCOLORS=ExFxBxDxCxegedabagacad
-
 
 #   -----------------------------
 #   2.  MAKE TERMINAL BETTER
@@ -78,8 +66,6 @@ EOT
 #   ---------------------------
 #   4.  SEARCHING
 #   ---------------------------
-
-alias qfind="find . -name "                 # qfind:    Quickly search for file
 
 #   spotlight: Search for a file using MacOS Spotlight's metadata
 #   -----------------------------------------------------------
