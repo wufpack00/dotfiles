@@ -2,6 +2,11 @@ if ! is_mac ; then
     return
 fi
 
+for Cmd in ll ; do
+  unalias $Cmd >/dev/null 2>&1
+  unset -f $Cmd >/dev/null 2>&1
+done
+
 # Adapted from https://gist.github.com/natelandau/10654137
 
 #   ------------------------------------------------------------
@@ -28,6 +33,7 @@ alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
+alias ll='ls -FlAhpG'
 
 #   mans:   Search manpage given in agument '1' for term given in argument '2' (case insensitive)
 #           displays paginated result with colored search terms and two lines surrounding each hit.             Example: mans mplayer codec

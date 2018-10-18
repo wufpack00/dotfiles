@@ -8,12 +8,12 @@ alias du='du -h'
 alias df='df -h'
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias more='less'
-
 alias mroe='more'
 alias m='more'
 
 alias reload='. $HOME/.bash_profile'
 alias less='less -FSRXc'                    # Preferred 'less' implementation
+alias ll='ls -FlAhp --color=always'
 
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
@@ -26,11 +26,9 @@ alias ~="cd ~"                              # ~:            Go Home
 alias which='type -all'                     # which:        Find executables
 
 # go up one level and list contents
-alias u='clear; cd ..;'  
+alias u='clear; cd ..;'
 
 alias cl='clear'
-
-alias qfind="find . -name "                 # qfind:    Quickly search for file
 
 alias lo='logout'
 alias path='echo -e ${PATH//:/\\n}'

@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # colored man pages
 function man() {
 	env \
