@@ -12,28 +12,28 @@ function executing_env() {
 }
 
 function is_windows() {
-    if [ "$(executing_env)" == "MinGw" ] ; then
+    if [ "$(executing_env)" = "MinGw" ] ; then
         return 0
     fi
     return 1
 }
 
 function is_cygwin() {
-    if [ "$(executing_env)" == "Cygwin" ] ; then
+    if [ "$(executing_env)" = "Cygwin" ] ; then
         return 0
     fi
     return 1
 }
 
 function is_mac() {
-    if [ "$(executing_env)" == "Mac" ] ; then
+    if [ "$(executing_env)" = "Mac" ] ; then
         return 0
     fi
     return 1
 }
 
 function is_nix() {
-    if [ "$(executing_env)" == "Linux" ] ; then
+    if [ "$(executing_env)" = "Linux" ] ; then
         return 0
     fi
     return 1
