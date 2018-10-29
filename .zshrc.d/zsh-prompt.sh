@@ -1,3 +1,6 @@
+#! /bin/zsh
+
+# make colors available by name
 autoload -U colors && colors
 
 setopt PROMPT_SUBST     # allow funky stuff in prompt
@@ -22,6 +25,7 @@ precmd () {
 
    local PROMPT_COLOR="%{$fg[$color]%}"
    local GIT_COLOR="%{$fg[$gitcolor]%}"
+   # spectrum.sh creates the FG and BG array
    local ORANGE="$FG[202]"
    local FINAL="%{$reset_color%}"
 
