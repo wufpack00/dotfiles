@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#! /bin/zsh
 
 # colored man pages
 function man() {
