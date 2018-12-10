@@ -3,7 +3,19 @@ My preferred bash config
 
 Many thanks to all the bloggers, coders, github-ers, etc. that have provided countless examples for me to use as a starting point.
 
-**Install Cygwin**
+**Install DotFiles**
+
+1. Clone repo into home directory
+2. Execute bootstrap script to backup existing dotfiles and create symlinks to these
+~~~~
+$> git clone git@github.com:wufpack00/dotfiles.git .dotfiles
+# default files plus cygwin and/or work config
+$> ./.dotfiles/bin/bootstrap.sh
+~~~~
+
+At this time, not all config files are included as part of the bootstrap.sh script setup.
+
+**Windows**
 
 1. Down and install [cygwin](https://www.cygwin.com/) (select lynx as package to install)
 2. Install [apt-cyg](https://github.com/transcode-open/apt-cyg) package manager
@@ -27,39 +39,28 @@ $> git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 $> gem install tmuxinator
 ~~~~
 
-**Install DotFiles**
-
-1. Clone repo into home directory
-2. Execute bootstrap script to backup existing dotfiles and create symlinks to these
-~~~~
-$> git clone git@github.com:wufpack00/dotfiles.git
-# default files plus cygwin and/or work config
-$> ./dotfiles/bin/bootstrap.sh [-c|-w]
-~~~~
-
-At this time, not all config files are included as part of the bootstrap.sh script setup.
-
-
-
 **Mac OS X**
-1. Install [brew](http://brew.sh/) package manager
+1. Install [XCode](https://developer.apple.com/xcode/) from Apple store
+2. Accept T&C 
+3. Ensure Opendiff works
+
+~~~~
+$> opendiff
+tool 'opendiff' requires Xcode, but active developer directory '/Library/Developer/CommandLineTools' is a command line tools instance
+$> sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+~~~~
+2. Install [brew](http://brew.sh/) package manager
 
 ~~~~
 $> /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-$> brew install git
-$> brew install tmux
+$> brew install git tmux
 $> gem install tmuxinator
 ~~~~
-2. Install [brew-cask](https://caskroom.github.io/) app installer
+3. Install [brew-cask](https://caskroom.github.io/) app installer
 
 ~~~~
 $> brew tap caskroom/cask
-$> brew cask install iterm2
-$> brew cask install alfred
-$> brew cask install google-chrome
-$> brew cask install virtualbox
-$> brew cask install vagrant
-$> brew cask install vagrant-manager
+$> brew cask install iterm2 alfred google-chrome virtualbox vagrant vagrant-manager
 ~~~~
 
 **Vagrant Setup**
