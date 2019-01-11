@@ -18,6 +18,7 @@
 
     # run git command over all subdirectories
     all = "!f() { find $(git config --get project.checkout-dir) -name '.git' -type d | rev | cut -c6- | rev |  xargs -P10 -I{} git -C {} $@ ; }; f"
+    all-here = "!f() { find . -name '.git' -type d | rev | cut -c6- | rev |  xargs -P10 -I{} git -C {} $@ ; }; f"
     #all = "!f() { find ~/git-checkouts -name '.git' -type d | sed 's/\/.git//' |  xargs -P10 -I{} git -C {} $1; }; f"
 
     # remove remote branch references that no longer exist, cleanup unnecessary git files, remove untracked files from the working tree and clear out your stash
@@ -65,7 +66,7 @@
     # delete the remote version of the current branch
 	unpublish = !git push origin :$(git current-branch)
     # delete every branch that been merged into master (except master)
-	branch-clean = "!f() { git branch --merged ${1-master} | grep -v ${1-master}$ | xargs -r git branch -d; }; f"
+	branch-clean = "!f() { git branch --merged ${1-master} | grep -v ${1-master}$ | xargs git branch -d; }; f"
     # switch to master, bring master up to speed with origin, delete all local brances already merged into master
 	branch-done = "!f() { git checkout ${1-master} && git update ${1-master} && git branch-clean ${1-master}; }; f"
   
