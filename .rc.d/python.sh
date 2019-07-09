@@ -5,6 +5,7 @@ if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
     source /usr/local/bin/virtualenvwrapper.sh
 
     # pip should only run if there is a virtualenv currently activated
+    # may also be defined in ~/Library/Application Support/pip/pip.conf
     export PIP_REQUIRE_VIRTUALENV=true
 
     gpip2(){
