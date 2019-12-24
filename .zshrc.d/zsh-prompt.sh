@@ -34,3 +34,7 @@ precmd () {
    __git_ps1 $PROMPT_COLOR"[%n@%m:"$ORANGE"%~"$GIT_COLOR $PROMPT_COLOR"] "$FINAL " (%s)"
 
 }
+
+#RPROMPT='%*'
+RPROMPT='%(0?..%F{red}(%?%))%f'
+#RPROMPT='%(?.%F{green}√.%F{red}?%?)%f

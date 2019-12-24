@@ -23,7 +23,7 @@ alias .4='cd ../../../../'                  # Go back 4 directory levels
 alias .5='cd ../../../../../'               # Go back 5 directory levels
 alias .6='cd ../../../../../../'            # Go back 6 directory levels
 alias ~="cd ~"                              # ~:            Go Home
-alias which='type -all'                     # which:        Find executables
+alias which='type -a'                     # which:        Find executables
 
 # go up one level and list contents
 alias u='clear; cd ..;'
