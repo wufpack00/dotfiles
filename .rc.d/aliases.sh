@@ -34,7 +34,6 @@ alias lo='logout'
 alias path='echo -e ${PATH//:/\\n}'
 alias psj='ps -ef |grep java'
 alias numFiles='echo $(ls -1 | wc -l)'
-alias vless='/usr/share/vim/vim70/macros/less.sh'
 alias view='vi -R'
 
 if [ -f "${HOME}/.tmux.conf" ]; then
