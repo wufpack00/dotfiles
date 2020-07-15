@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # .bashrc is executed for interactive non-login shells
 if [[ $- != *i* ]] ; then
   # shell is non-interactive. be done now!

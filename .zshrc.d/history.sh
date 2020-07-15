@@ -20,8 +20,9 @@ function h() {
 
     if [ -z "$1" ]
     then
-        history 1
+        # -i to display timestamps
+        history -i 1
     else
-        history 1 | grep "$@"
+        history -i 1 | grep "$@"
     fi
 }

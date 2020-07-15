@@ -31,10 +31,11 @@ precmd () {
 
 #PROMPT=$PROMPT_COLOR'[%n@%m:'$ORANGE'%~'$PROMPT_COLOR$GIT_COLOR'$(__git_ps1 " (%s)")'$PROMPT_COLOR'] '$FINAL
    
-   __git_ps1 $PROMPT_COLOR"[%n@%m:"$ORANGE"%~"$GIT_COLOR $PROMPT_COLOR"] "$FINAL " (%s)"
+  __git_ps1 $PROMPT_COLOR"[%n@%m:"$ORANGE"%~"$GIT_COLOR $PROMPT_COLOR"] "$FINAL " (%s)"
 
 }
 
 #RPROMPT='%*'
 RPROMPT='%(0?..%F{red}(%?%))%f'
+RPROMPT='$(kube_ps1)'$RPROMPT
 #RPROMPT='%(?.%F{green}√.%F{red}?%?)%f

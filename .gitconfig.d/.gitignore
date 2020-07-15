@@ -1,3 +1,11 @@
+# intellij
+.idea/
+
+# Ansible
+*.retry
+roles.galaxy
+*.swp
+
 # Compiled
 *.com
 *.class
