@@ -1,2 +1,6 @@
-# Most ZSH config e.g. aliases etc goes here
-alias cat='bat'
+# load all zsch-specific files
+if [ -d $HOME/.dotfiles/.zshrc.d ]; then
+  for file in $HOME/.dotfiles/.zshrc.d/*.sh; do
+    source $file
+  done
+fi

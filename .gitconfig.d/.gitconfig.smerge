@@ -1,6 +1,0 @@
-[merge]
-    tool = smerge
-
-[diff]
-    tool = smerge
-    prompt = false
