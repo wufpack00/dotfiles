@@ -23,6 +23,6 @@ function h() {
         # -i to display timestamps
         history -i 1
     else
-        history -i 1 | grep "$@"
+        history -i 1 | grep -i "$@"
     fi
 }
