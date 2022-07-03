@@ -7,7 +7,7 @@ fi
 
 export ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="robbyrussell"
-plugins=(git)
+plugins=( colored-man-pages extract git zsh-autosuggestions zsh-syntax-highlighting)
 
 # skip the verification of insecure directories
 ZSH_DISABLE_COMPFIX=true
