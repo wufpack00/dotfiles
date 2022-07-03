@@ -1,0 +1,2 @@
+# Most ZSH config e.g. aliases etc goes here
+alias cat='bat'
