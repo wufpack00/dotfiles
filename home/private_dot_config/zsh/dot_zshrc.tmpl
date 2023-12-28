@@ -14,7 +14,8 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 
 # Enable Homebrew auto completion
-HOMEBREW_PREFIX=/usr/local
+# Install location is different depending on model
+HOMEBREW_PREFIX={{ if contains "Intel" (output "sysctl" "-n" "machdep.cpu.brand_string") -}} /usr/local {{- else -}} /opt/homebrew {{- end }}
 FPATH="${HOMEBREW_PREFIX}/share/zsh/site-functions:${FPATH}"
 unset HOMEBREW_PREFIX
 

@@ -14,7 +14,7 @@ function homebrew_postinstall() {
 
   # Setup Homebrew in shell environment
   echo "Setup current environment..."
-  eval "$($(brew --prefix)/bin/brew shellenv)"
+  eval "$({{ if contains "Intel" (output "sysctl" "-n" "machdep.cpu.brand_string") -}} /usr/local {{- else -}} /opt/homebrew {{- end }}/bin/brew shellenv)"
 
   # Install required dependencies
   echo "Installing required dependencies..."
