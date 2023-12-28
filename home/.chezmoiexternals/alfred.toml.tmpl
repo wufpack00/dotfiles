@@ -1,0 +1,16 @@
+[".config/alfred/dracula/Dracula.alfredappearance"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/dracula/alfred/master/Dracula.alfredappearance"
+{{- $1pWorkflowVersionTag := (gitHubLatestRelease "alfredapp/1password-workflow").TagName }}
+[".config/alfred/workflows/1Password.alfredworkflow"]
+    type = "file"
+    url = "https://github.com/alfredapp/1password-workflow/releases/download/{{ $1pWorkflowVersionTag }}/1Password.alfredworkflow"
+{{- $variousScreenshotsWorkflowVersionTag := (gitHubLatestRelease "vookimedlo/alfred-various-screenshots").TagName }}
+[".config/alfred/workflows/VariousScreenshots.alfredworkflow"]
+    type = "file"
+    url = "https://github.com/vookimedlo/alfred-various-screenshots/releases/download/{{ $variousScreenshotsWorkflowVersionTag }}/VariousScreenshots.alfredworkflow"
+{{- $calculateAnythingWorkflowVersionTag := (gitHubLatestRelease "biati-digital/alfred-calculate-anything").TagName }}
+[".config/alfred/workflows/Calculate.Anything.alfredworkflow"]
+    type = "file"
+    url = "https://github.com/biati-digital/alfred-calculate-anything/releases/download/{{ $calculateAnythingWorkflowVersionTag }}/Calculate.Anything.alfredworkflow"
+  

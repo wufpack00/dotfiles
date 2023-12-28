@@ -1,0 +1,27 @@
+{{- $name := "Carey Rogers" -}}
+{{- $email := "wufpack00@gmail.com" -}}
+{{- $1pemail := $email }}
+
+{{/* work around unreliable hostname on darwin */}}
+{{- $hostname := .chezmoi.hostname -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $computerName := output "scutil" "--get" "ComputerName" | trim -}}
+{{-   $hostname = $computerName -}}
+{{- end -}}
+
+{{- $name := promptStringOnce . "name" "git.name" $name }}
+{{- $email := promptStringOnce . "email" "git.email" $email }}
+{{- writeToStdout "💡 Tip: you can re-enter your name and email with `chezmoi init --data=false`.\n" -}}
+
+[data]
+name = {{ $name | quote }}
+email = {{ $email | quote }}
+personal = {{ eq $email $1pemail }}
+hostname = {{ $hostname | quote }}
+
+[data.env]
+os = {{ .chezmoi.os | quote }}
+
+[data.onepassword]
+address = "my.1password.com"
+email = {{ $1pemail | quote }}

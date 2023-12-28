@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# ---------------------------------------------------------------------------
+# Install applications and tools
+# ---------------------------------------------------------------------------
+
+
+{{/* Include external functions */}}
+{{ template "install-brewfile.tmpl" . }}
+{{ template "install-python.tmpl" . }}
+
+
+#################### Main Program ####################
+
+# Stop script on error
+set -eo pipefail
+
+# Setup environment
+eval "$($(brew --prefix)/bin/brew shellenv)"
+
+# Install dependencies
+install_brewfile
+
+# Install / update Python
+install_python

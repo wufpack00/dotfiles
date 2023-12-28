@@ -1,0 +1,8 @@
+function apply_settings() {
+  local destination=$1
+
+  echo "Applying VSCode configuration..."
+  if [[ ! -d "$destination" ]]; then mkdir -p "$destination"; fi
+  cp -a {{ .chezmoi.homeDir }}/.config/vscode/. "$destination"
+  
+}

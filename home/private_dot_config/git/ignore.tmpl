@@ -1,0 +1,34 @@
+# -*-mode:gitignore-*- vim:ft=gitignore
+
+# ~/.config/git/ignore
+
+# Compiled
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Temp files 
+*.swp
+*.swo
+*~
+
+# Compressed files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Log files
+*.log
+
+{{ if eq .env.os "darwin" -}}
+.DS_Store*
+Thumbs.db
+{{- end }}
