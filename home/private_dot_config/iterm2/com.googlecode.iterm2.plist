@@ -1256,7 +1256,7 @@
 		</dict>
 	</dict>
 	<key>PromptOnQuit</key>
-	<true/>
+	<false/>
 	<key>QuickPasteBytesPerCall</key>
 	<integer>1536</integer>
 	<key>QuickPasteDelayBetweenCalls</key>

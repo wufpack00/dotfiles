@@ -1,0 +1,9 @@
+{{- $homebrewPrefix := "/opt/homebrew" -}}
+{{ if contains "Intel" (output "sysctl" "-n" "machdep.cpu.brand_string") -}}
+{{   $homebrewPrefix = "/usr/local" -}}
+{{ end -}}
+{{ $homebrewPath := joinPath $homebrewPrefix "bin/brew" -}}
+{{ if stat $homebrewPath -}}
+fpath+=("{{ output $homebrewPath "--prefix" | trim }}/share/zsh/site-functions")
+{{ output $homebrewPath "shellenv" | trim }}
+{{ end -}}

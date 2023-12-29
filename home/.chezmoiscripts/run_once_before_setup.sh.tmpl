@@ -1,5 +1,5 @@
 {{- /* Required dependencies */ -}}
-{{- $formula := list "curl" "git" "jq" "mas" "wget" -}}
+{{- $formula := list "curl" "git" "jq" "mas" "wget" "openssl" "readline" "sqlite3" "xz" "zlib" "tcl-tk" -}}
 {{- $casks := list "1password-cli" -}}
 
 #!/usr/bin/env bash
@@ -25,6 +25,12 @@ function homebrew_postinstall() {
 
 # https://github.com/pyenv/pyenv#automatic-installer
 function install_pyenv() {
+  # Check if pyenv is installed
+  if command -v pyenv --version > /dev/null; then
+    echo "pyenv already installed"
+    pyenv --version
+    return 0
+  fi
   echo "Installing pyenv..."
   curl https://pyenv.run | bash
 }
