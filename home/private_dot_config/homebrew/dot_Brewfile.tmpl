@@ -4,12 +4,14 @@
   "homebrew/bundle"
   "homebrew/cask-versions"
   "buo/cask-upgrade"
+  "lotyp/homebrew-formulae"
 -}}
 
 {{- /* Formula to install */ -}}
 {{- $formula := list
   "bat"
   "chezmoi"
+  "fzf"
   "git"
   "jq"
   "mas"
@@ -21,6 +23,7 @@
 
 {{- if .personal -}}
 {{- $formula = concat $formula ( list
+  "lotyp/formulae/dockutil"
   "exiftool" )
 -}}
 {{- end -}}
@@ -76,7 +79,10 @@ cask "{{ . }}"
 {{- /* MacOS App Store */ -}}
 {{ if eq .env.os "darwin" }}
 mas "1Password for Safari", id: 1569813296
-# mas "Microsoft To Do", id: 1274495053
-# mas "Paprika Recipe Manager 3", id: 1303222628
-# mas "Rakuten Cash Back", id: 1451893560
+{{   if .personal -}}
+mas "JSON Helper for ApplesScript", id: 453114608
+mas "Microsoft To Do", id: 1274495053
+mas "Paprika Recipe Manager 3", id: 1303222628
+mas "Rakuten Cash Back", id: 1451893560
+{{   end -}}
 {{ end -}}

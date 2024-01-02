@@ -1,0 +1,45 @@
+{{- if .configOpts.dock -}}
+
+#!/usr/bin/env bash
+
+set -eux -o pipefail
+
+# Remove all existing Dock items; they'll be re-added in order.
+dockutil --remove all
+
+
+# Add persistent Dock applications in left-to-right order.
+cat << EOF | xargs -L 1 -I {} dockutil --no-restart --add '{}'
+/System/Applications/System Settings.app
+/System/Applications/Preview.app
+/Applications/iTerm.app
+/System/Applications/Mail.app
+/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app
+/System/Applications/Contacts.app
+/System/Applications/Calendar.app
+/System/Applications/Notes.app
+/System/Applications/Reminders.app
+/Applications/Visual Studio Code.app
+EOF
+
+{{ if .personal }}
+cat << EOF | xargs -L 1 -I {} dockutil --no-restart --add '{}'
+/Applications/Microsoft To Do.app
+/Applications/Quicken.app
+/Applications/Spotify.app
+/System/Applications/Utilities/Print Center.app
+/Applications/Paprika Recipe Manager 3.app
+EOF
+{{ end }}
+
+# Add folders in left-to-right order.
+# The fresh-installed macOS Downloads folder is shown as: --view fan --display stack --sort dateadded
+# Folders manually dragged into the Dock are shown as: --view auto --display stack --sort name
+cat << EOF | xargs -L 1 -I {} dockutil --no-restart --add '{}' --view fan --display stack --sort dateadded
+~/Downloads
+EOF
+
+# Restart the Dock to re-read settings.
+killall Dock
+
+{{- end -}}
