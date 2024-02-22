@@ -24,7 +24,9 @@
 {{- if .personal -}}
 {{- $formula = concat $formula ( list
   "lotyp/formulae/dockutil"
-  "exiftool" )
+  "exiftool"
+  "mpg123"
+  "php" )
 -}}
 {{- end -}}
 
@@ -41,6 +43,7 @@
   "1password-cli"
   "alfred"
   "bartender"
+  "docker"
   "google-chrome"
   "hazel"
   "logi-options-plus"
@@ -53,6 +56,7 @@
 {{- if .personal -}}
 {{- $casks = concat $casks ( list
   "dropbox"
+  "slack"
   "photosweeper-x"
   "photosync"
   "spotify"
