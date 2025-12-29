@@ -5,7 +5,7 @@ These are the things that aren't worth the effort in figuring out how to automat
 ## Applications
 
 - [ ] Configure iTerm2
-  - Load/save preferences from chezmoi sourceDir ($HOME/.local/share/chezmoi)
+  - The configuration file should be synced automatically. If it is not, `Preferences > General > Preferences` and select the `Load preferences from a custom folder or URL` option. Then select `~/.config/iterm2/preferences`.
 - [ ] Configure Dropbox
   - Sync files
 - [ ] Set up Timemachine backup

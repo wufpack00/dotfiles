@@ -1,0 +1,20 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+
+# Grab current setting
+if current=$(defaults read com.googlecode.iterm2 PrefsCustomFolder 2>/dev/null); then
+
+    if [[ ${current} != "{{ .chezmoi.homeDir }}/.config/iterm2/preferences" ]]; then
+
+        # Specify the preferences directory
+        defaults write com.googlecode.iterm2 PrefsCustomFolder -string "{{ .chezmoi.homeDir }}/.config/iterm2/preferences"
+
+        # Tell iTerm2 to use the custom preferences in the directory
+        defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+
+        echo "Set shared iTerm2 preferences: {{ .chezmoi.homeDir }}/.config/iterm2/preferences"
+        exit 0
+    fi
+fi
+
+{{- end }}
