@@ -1,27 +1,128 @@
-{{- $name := "Carey Rogers" -}}
-{{- $email := "wufpack00@gmail.com" -}}
-{{- $1pemail := $email }}
+{{/* boolean feature tags */}}
+{{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $work := false -}}{{/* true if this machine is a work machine */}}
+{{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
+{{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
+{{- "" -}}
+
+{{- $default_fname := onepasswordRead "op://6rjck7tbt6ckv7lkma7bd325wi/mljh57k72rc6jc23mm7nbgbdzu/first name" -}}
+{{- $default_lname := onepasswordRead "op://6rjck7tbt6ckv7lkma7bd325wi/mljh57k72rc6jc23mm7nbgbdzu/last name" -}}
+{{- $default_name := (print $default_fname " " $default_lname) -}}
+{{- $default_email := onepasswordRead "op://6rjck7tbt6ckv7lkma7bd325wi/mljh57k72rc6jc23mm7nbgbdzu/secondary email" -}}
+
+{{/* combine os and distribution into single variable (ie, "darwin", "linux-fedora", "linux-debian" */}}
+{{- $osID := .chezmoi.os -}}
+{{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
+{{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
 
 {{/* work around unreliable hostname on darwin */}}
 {{- $hostname := .chezmoi.hostname -}}
 {{- if eq .chezmoi.os "darwin" -}}
-{{-   $computerName := output "scutil" "--get" "ComputerName" | trim -}}
-{{-   $hostname = $computerName -}}
+{{-   $hostname := output "scutil" "--get" "LocalHostName" | trim -}}
 {{- end -}}
 
-{{- $name := promptStringOnce . "name" "git.name" $name }}
-{{- $email := promptStringOnce . "email" "git.email" $email }}
-{{- writeToStdout "💡 Tip: you can re-enter your name and email with `chezmoi init --data=false`.\n" -}}
+{{/* detect GitHub codespaces, VSCode remote containers, Docker containers, Multipass VMs, and Vagrant boxes */}}
+{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
+{{-   $ephemeral = true -}}
+{{-   $headless = true -}}
+{{- end -}}
+
+{{- if not $ephemeral -}}
+{{-   if eq $hostname "melanite" -}}
+{{-     $personal = true -}}
+{{-   else if eq $hostname "katniss" -}}
+{{-     $headless = true -}}
+{{-     $personal = true -}}
+{{-   else -}}
+{{-     $work = promptBoolOnce . "work" "Is this a work computer" -}}
+{{-     if not $work -}}
+{{-       $ephemeral = true -}}
+{{-       $headless = true -}}
+{{-     end -}}
+{{-   end -}}
+{{- end -}}
+
+
+{{- $name := promptStringOnce . "name" "Name" $default_name -}}
+{{- $email := promptStringOnce . "email" "Email" $default_email -}}
+
+{{/* development tools */}}
+{{- $containers := promptBoolOnce . "install.containers" "Install container development tools" false -}}
+{{- $golang := promptBoolOnce . "install.golang" "Install Golang development tools" false -}}
+{{- $iac := promptBoolOnce . "install.iac" "Install IaC development tools" false -}}
+{{- $python := promptBoolOnce . "install.python" "Install python development tools" false -}}
+
+
+{{- $configureDock := false -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{ $configureDock = promptBoolOnce . "preferences.manageDock" "Do you want to configure macOS dock items" false }}
+{{- end -}}
+
+{{- $choices := list "slack" "ms-teams" "none" -}}
+{{- $chat_apps := promptMultichoiceOnce
+    . "preferences.chatApps"
+    "Which chat app(s) should be installed"
+    $choices
+    (list "none")
+-}}
+{{- if has "none" $chat_apps }}{{ $chat_apps = list }}{{ end -}}
+
+{{- $choices = list "figma" "miro" "none" -}}
+{{- $collab_apps := promptMultichoiceOnce
+    . "preferences.collabApps"
+    "Which collaboration app(s) should be installed"
+    $choices
+    (list "none")
+-}}
+{{- if has "none" $collab_apps }}{{ $collab_apps = list }}{{ end -}}
+
+{{- $choices = list "zoom" "webex" "ms-teams" "none" -}}
+{{- $meet_apps := promptMultichoiceOnce
+    . "preferences.meetApps"
+    "Which virtual meeting app(s) should be installed"
+    $choices
+    (list "none")
+-}}
+{{- if has "none" $meet_apps }}{{ $meet_apps = list }}{{ end -}}
+
+{{- writeToStdout "💡 Tip: you can re-enter your choices with `chezmoi init --data=false`.\n" -}}
 
 [data]
-name = {{ $name | quote }}
-email = {{ $email | quote }}
-personal = {{ eq $email $1pemail }}
-hostname = {{ $hostname | quote }}
+  email = {{ $email | quote }}
+  ephemeral = {{ $ephemeral }}
+  headless = {{ $headless }}
+  hostname = {{ $hostname | quote }}
+  name = {{ $name | quote }}
+  osid = {{ $osID | quote }}
+  personal = {{ $personal }}
+  work = {{ $work }}
+  zshPlugins = [
+      "colored-man-pages",
+      "zsh-autosuggestions",
+      "zsh-syntax-highlighting",
+  ]
 
-[data.env]
-os = {{ .chezmoi.os | quote }}
+[data.install]
+  containers =  {{ $containers }}
+  golang =  {{ $golang }}
+  iac =  {{ $iac }}
+  python =  {{ $python }}
 
-[data.onepassword]
-address = "my.1password.com"
-email = {{ $1pemail | quote }}
+
+[data.preferences]
+  chatApps = {{- $chat_apps | toToml | println -}}
+  collabApps = {{- $collab_apps | toToml | println -}}
+  manageDock = {{ $configureDock }}
+  meetApps = {{- $meet_apps | toToml | println -}}
+
+
+{{/* chezmoi options */}}
+{{ if lookPath "code" -}}
+[edit]
+  command = "code"
+  args = ["--wait"]
+{{ end -}}
+
+[hooks.read-source-state.pre]
+  command =  "{{ .chezmoi.sourceDir }}/.install-prerequisites.sh"

@@ -5,7 +5,7 @@ These are the things that aren't worth the effort in figuring out how to automat
 ## Applications
 
 * Configure iTerm2
-  * Load/save preferences from chezmoi sourceDir
+  * Load/save preferences from chezmoi sourceDir ($HOME/.local/share/chezmoi)
 * Configure Dropbox
   * Sync files
 * Disable Spotlight Search
@@ -13,9 +13,10 @@ These are the things that aren't worth the effort in figuring out how to automat
   * Remove from the menu bar
 * Configure Alfred
   * Activate license and grant required permissions
-  * Configure [Syncing](https://www.alfredapp.com/help/advanced/sync) with files in Dropbox
+  * ~~ Configure [Syncing](https://www.alfredapp.com/help/advanced/sync) with files in Dropbox ~~
   * Configure shortcut key
   * Execute `open ~/.config/alfred/theme` and double-click all files
+  * Execute `open ~/.config/alfred/workflows` and double-click all files
   * Enable clipboard history
 * Configure 1Password
   * [Create Mac login](https://support.1password.com/mac-universal-autofill/#set-up-universal-autofill)
@@ -28,7 +29,7 @@ These are the things that aren't worth the effort in figuring out how to automat
   * Grant permissions
   * Start at login
   * System Preferences > Control Center > Show Clock = Never
-* Safari
+* Safari/Chrome
   * Disable autofill
 * Hazel
   * Activate license and grant permissions

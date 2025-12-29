@@ -1,6 +1,0 @@
-[configOpts]
-dock = false
-
-[python]
-version = '3.12.0'
-installer = 'pip install -U'

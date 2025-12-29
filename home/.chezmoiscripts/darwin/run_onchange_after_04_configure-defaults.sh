@@ -1,11 +1,8 @@
 #!/bin/bash
-# https://github.com/mathiasbynens/dotfiles/blob/main/.macos
+# https://git.herrbischoff.com/awesome-macos-command-line/about/
 set -eufo pipefail
 
 
-###############################################################################
-# General UI/UX                                                               #
-###############################################################################
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
@@ -17,25 +14,11 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 # Save to disk (not to iCloud) by default
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
-# Close any open System Preferences panes, to prevent them from overriding
-# settings we’re about to change
-osascript -e 'tell application "System Preferences" to quit'
-
-
-
 defaults write NSGlobalDomain AppleInterfaceStyle Dark
-
-###############################################################################
-# Screen                                                                      #
-###############################################################################
 
 # Save screenshots to the desktop
 mkdir -p "${HOME}/Desktop/screenshots" && defaults write com.apple.screencapture location -string "${HOME}/Desktop/screenshots"
 
-
-###############################################################################
-# Finder                                                                      #
-###############################################################################
 
 # Set Documents as the default location for new Finder windows
 # For other paths, use `PfLo` and `file:///full/path/here/`
@@ -85,9 +68,7 @@ chflags nohidden ~/Library #&& xattr -d com.apple.FinderInfo ~/Library
 sudo chflags nohidden /Volumes
 
 killall Finder
-###############################################################################
-# Dock                                                                        #
-###############################################################################
+
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool false
 # Don’t animate opening applications from the Dock
@@ -99,28 +80,3 @@ defaults write com.apple.dock orientation -string bottom
 defaults write com.apple.dock minimize-to-application -bool true
 
 killall Dock
-
-###############################################################################
-# Safari                                                                      #
-###############################################################################
-
-# Privacy: don’t send search queries to Apple
-#defaults write com.apple.Safari UniversalSearchEnabled -bool false
-#defaults write com.apple.Safari SuppressSearchSuggestions -bool true
-
-# Prevent Safari from opening ‘safe’ files automatically after downloading
-#defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
-
-# Disable AutoFill
-#defaults write com.apple.Safari AutoFillFromAddressBook -bool false
-#defaults write com.apple.Safari AutoFillPasswords -bool false
-#defaults write com.apple.Safari AutoFillCreditCardData -bool false
-#defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
-
-# Enable “Do Not Track”
-#defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
-
-# Update extensions automatically
-#defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
-
-#killall Safari

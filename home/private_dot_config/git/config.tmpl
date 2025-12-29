@@ -1,18 +1,18 @@
 [user]
-    name = {{ .name }}
+  name = {{ .name }}
 	email = {{ .email }}
 
 [init]
-    defaultBranch = main
+  defaultBranch = main
 
 [alias]
-    # show list of all configured aliases
+  # show list of all configured aliases
 	alias = !git config -l | grep alias | cut -c 7- | sort
 
-    #######################
-    # shortened commands
-    ########################
-	br = branch
+  #######################
+  # shortened commands
+  ########################
+  br = branch
 	co = checkout
 	cob = checkout -b
 	cp = cherry-pick
@@ -34,7 +34,7 @@
 	unstage = reset HEAD --
     undo-commit = reset --soft HEAD~1
     undo-commit-hard = reset HEAD --hard
-    
+
     # view list of files to be pushed to remote
     topush = !git diff --stat --cached origin/main
     topushdiff = !git diff --cached origin/main
@@ -72,7 +72,7 @@
 	branch-clean = "!f() { git branch --merged ${1-main} | grep -v ${1-main}$ | xargs -r git branch -d; }; f"
     # switch to main, bring main up to speed with origin, delete all local brances already merged into main
 	branch-done = "!f() { git checkout ${1-main} && git update ${1-main} && git branch-clean ${1-main}; }; f"
-  
+
     #######################
     # history
     ########################
@@ -104,7 +104,7 @@
     tool = vscode
 
 [mergetool "vscode"]
-    cmd = code --wait $MERGED    
+    cmd = code --wait $MERGED
 
 [fetch]
 	prune = true

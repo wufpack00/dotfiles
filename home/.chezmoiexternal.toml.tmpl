@@ -1,0 +1,83 @@
+{{- if eq .osid "darwin" }}
+[".config/alfred/theme/Dracula.alfredappearance"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/dracula/alfred/master/Dracula.alfredappearance"
+
+[".config/alfred/workflows/1Password.alfredworkflow"]
+    type = "file"
+    url = "https://github.com/alfredapp/1password-workflow/releases/download/{{ (gitHubLatestRelease "alfredapp/1password-workflow").TagName }}/1Password.alfredworkflow"
+
+[".config/alfred/workflows/VariousScreenshots.alfredworkflow"]
+    type = "file"
+    url = "https://github.com/vookimedlo/alfred-various-screenshots/releases/download/{{ (gitHubLatestRelease "vookimedlo/alfred-various-screenshots").TagName }}/VariousScreenshots.alfredworkflow"
+
+[".config/alfred/workflows/Calculate.Anything.alfredworkflow"]
+    type = "file"
+    url = "https://github.com/biati-digital/alfred-calculate-anything/releases/download/{{ (gitHubLatestRelease "biati-digital/alfred-calculate-anything").TagName }}/Calculate.Anything.alfredworkflow"
+
+[".config/iterm2/theme/Dracula.itermcolors"]
+    type = "file"
+    url = "https://github.com/dracula/iterm/blob/master/Dracula.itermcolors"
+{{- end }}
+
+{{- if and (not .ephemeral) (not .headless) }}
+{{-   $fontDir := "" }}
+{{-   if eq .osid "darwin" }}
+{{-     $fontDir = "Library/Fonts" }}
+{{-   else if eq .chezmoi.os "linux" }}
+{{-     $fontDir = ".local/share/fonts" }}
+{{-   end }}
+{{-   range (list
+        "MesloLGS NF Regular.ttf"
+        "MesloLGS NF Bold.ttf"
+        "MesloLGS NF Italic.ttf"
+        "MesloLGS NF Bold Italic.ttf") }}
+["{{ $fontDir }}/{{ . }}"]
+    type = "file"
+    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/{{ . }}"
+    refreshPeriod = "168h"
+{{-   end }}
+{{- end }}
+
+[".oh-my-zsh"]
+    type = "archive"
+    url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+    exclude = [
+        "*/.*",
+        "*/templates",
+        "*/themes",
+    ]
+
+[".oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
+    type = "archive"
+    url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+    exclude = [
+        "*/.editorconfig",
+        "*/.gitattributes",
+        "*/.github",
+        "*/.gitignore",
+    ]
+
+[".oh-my-zsh/custom/plugins/zsh-autosuggestions"]
+    type = "archive"
+    url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+    exclude = [
+        "*/.editorconfig",
+        "*/.github",
+        "*/.gitignore",
+    ]
+
+[".oh-my-zsh/custom/themes/powerlevel10k"]
+    type = "archive"
+    url = "https://github.com/romkatv/powerlevel10k/archive/{{ (gitHubLatestRelease "romkatv/powerlevel10k").TagName }}.tar.gz"
+    exact = true
+    stripComponents = 1

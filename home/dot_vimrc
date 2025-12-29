@@ -12,7 +12,7 @@ set showcmd             " Show partial commands in the last line of the screen
 set ignorecase          " case insensitive search, except when using capitals
 set smartcase           " case insensitive patterns, when lowercase is used
 set smarttab            " smart tabulation and backspace
-"set autoindent 
+"set autoindent
 set showmode            " Show the current mode
 set showmatch           " show matching braces
 set hlsearch            " highlight searches
@@ -26,13 +26,13 @@ set shiftwidth=4        " No 8 character tabs
 set softtabstop=4
 set tabstop=4                   "number of spaces for tabs
 set undolevels=1000     " 1000 undos
- 
+
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
- 
+
 "F10 toggles line numbers
 map <silent> <F10> :set invnumber<cr>
- 
+
 syntax on
 
 " statusline

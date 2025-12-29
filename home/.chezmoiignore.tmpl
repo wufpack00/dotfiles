@@ -1,6 +1,22 @@
+!.oh-my-zsh/plugins
+{{ range .zshPlugins }}
+!.oh-my-zsh/plugins/{{ . }}
+!.oh-my-zsh/plugins/{{ . }}/**
+{{- end }}
 .oh-my-zsh/cache/**
+.oh-my-zsh/plugins/**
+.oh-my-zsh/templates/**
 .oh-my-zsh/custom/themes/powerlevel10k/**/*.zwc
 
 # https://www.chezmoi.io/user-guide/manage-different-types-of-file/#handle-configuration-files-which-are-externally-modified
 .config/iterm2/com.googlecode.iterm2.plist
 
+{{ if ne .chezmoi.os "darwin" }}
+.chezmoiscripts/darwin/**
+.config/homebrew
+Library
+{{ end }}
+
+{{ if ne .chezmoi.os "linux" }}
+.chezmoiscripts/linux/**
+{{ end }}

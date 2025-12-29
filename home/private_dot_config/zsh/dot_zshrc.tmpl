@@ -24,11 +24,17 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Disable Oh-My-ZSH update
+# Auto updates will cause the ~/.oh-my-zsh directory to drift out of sync with chezmoi's source state.
+# To update Oh My Zsh and its plugins, refresh the downloaded archives: chezmoi -R apply
 DISABLE_UPDATE_PROMPT=true
 DISABLE_AUTO_UPDATE=true
 
 # Oh-My-ZSH Plugins
-source "$XDG_CONFIG_HOME"/zsh/plugins.zsh
+plugins=(
+{{- range .zshPlugins }}
+  {{ . }}
+{{- end }}
+)
 
 # Initialize Oh-My-ZSH
 source $ZSH/oh-my-zsh.sh

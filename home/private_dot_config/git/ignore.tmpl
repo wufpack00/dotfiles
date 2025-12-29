@@ -10,7 +10,7 @@
 *.o
 *.so
 
-# Temp files 
+# Temp files
 *.swp
 *.swo
 *~
@@ -28,7 +28,7 @@
 # Log files
 *.log
 
-{{ if eq .env.os "darwin" -}}
+{{ if eq .osid "darwin" }}
 .DS_Store*
 Thumbs.db
 {{- end }}

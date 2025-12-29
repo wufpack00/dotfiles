@@ -4,10 +4,10 @@ alias cz='chezmoi'
 alias df='df -h'
 alias du='du -h'
 alias grep='grep --color=always'
-alias less='less -FSRXc'                    # Preferred 'less' implementation
+alias less='less -FSRXc'
 alias ll='ls -FlAhp --color=always'
 alias lo='logout'
-alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+alias mkdir='mkdir -pv'
 alias numFiles='echo $(ls -1 | wc -l)'
 alias path='echo -e ${PATH//:/\\n}'
 alias td='date +"%Y%m%d"'

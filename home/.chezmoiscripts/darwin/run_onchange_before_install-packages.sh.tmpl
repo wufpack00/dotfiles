@@ -1,0 +1,125 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+{{- $taps := list
+  "homebrew/bundle"
+  "buo/cask-upgrade"
+  "lotyp/homebrew-formulae"
+-}}
+
+{{ $brews := list
+     "bat"
+     "chezmoi"
+     "curl"
+     "fzf"
+     "git"
+     "jq"
+     "mas"
+     "openssl"
+     "pre-commit"
+     "shellcheck"
+     "shfmt"
+     "tree"
+     "wget" -}}
+
+{{ $casks := list
+     "1password"
+     "1password-cli"
+     "alfred"
+     "bartender"
+     "claude"
+     "google-chrome"
+     "hazel"
+     "logi-options-plus"
+     "iterm2"
+     "itsycal"
+     "visual-studio-code" -}}
+
+{{- if .personal -}}
+{{- $casks = concat $casks ( list
+  "dropbox"
+  "photosweeper-x"
+  "photosync"
+  "spotify"
+  "quicken" )
+-}}
+{{- end -}}
+
+{{- $casks = concat $casks .preferences.chatApps }}
+{{- $casks = concat $casks .preferences.collabApps }}
+{{- $casks = concat $casks .preferences.meetApps }}
+
+{{- if .preferences.manageDock -}}
+{{- $brews = concat $brews ( list
+  "dockutil" )
+-}}
+{{- end -}}
+
+{{- if .install.containers -}}
+{{- $brews = concat $brews ( list
+  "podman"
+  "hadolint"
+  "minikube"
+  "k9s" )
+-}}
+{{- end -}}
+
+{{- if .install.golang -}}
+{{- $brews = concat $brews ( list
+  "go" )
+-}}
+{{- end -}}
+
+{{- if .install.iac -}}
+{{- $taps = concat $taps ( list
+  "hashicorp/tap" )
+-}}
+{{- $brews = concat $brews ( list
+  "ansible"
+  "hashicorp/tap/terraform" )
+-}}
+{{- $casks = concat $casks ( list
+  "vagrant" )
+-}}
+{{- end -}}
+
+{{- if .install.python -}}
+{{- $brews = concat $brews ( list
+  "pyenv"
+  "openssl"
+  "readline"
+  "sqlite3"
+  "tcl-tk"
+  "xz"
+  "zlib" )
+-}}
+{{- end -}}
+
+{{ $mas_apps := dict
+  "1Password for Safari" 1569813296 }}
+{{   if .personal -}}
+{{-   $mas_apps = mustMerge $mas_apps ( dict
+  "JSON Helper for ApplesScript" 453114608
+  "Microsoft To Do" 1274495053
+  "Paprika Recipe Manager 3" 1303222628
+  "Rakuten Cash Back" 1451893560 )
+-}}
+{{   end -}}
+
+brew bundle --file=/dev/stdin <<EOF
+{{ range ( $taps | sortAlpha | uniq ) -}}
+tap "{{ . }}"
+{{ end -}}
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
+
+{{ range (keys $mas_apps | sortAlpha | uniq) -}}
+{{  $app_id := get $mas_apps . -}}
+mas "{{ . }}", id: {{ $app_id }}
+{{ end -}}
+EOF

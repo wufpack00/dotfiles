@@ -1,0 +1,25 @@
+{{- if .install.python -}}
+#!/usr/bin/env bash
+
+# Stop script on error
+set -eo pipefail
+
+DEFAULT_PYTHON_VERSION=3.13.0
+
+# Check if pyenv is installed
+command -v pyenv >/dev/null || return 0
+
+current=$(pyenv global)
+desired=$DEFAULT_PYTHON_VERSION
+
+echo "Checking Python version..."
+echo "Current: $current, Desired: $desired"
+
+if [[ "$current" == "$desired" ]]; then
+  return 0
+fi
+
+echo "Installing python $desired..."
+pyenv install "$desired"
+pyenv global "$desired"
+{{- end -}}

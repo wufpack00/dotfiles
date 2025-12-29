@@ -1,8 +1,10 @@
-{{- if .configOpts.dock -}}
+{{- if .preferences.manageDock -}}
 
 #!/usr/bin/env bash
 
 set -eux -o pipefail
+
+trap 'killall Dock' EXIT
 
 # Remove all existing Dock items; they'll be re-added in order.
 dockutil --remove all
@@ -38,8 +40,5 @@ EOF
 cat << EOF | xargs -L 1 -I {} dockutil --no-restart --add '{}' --view fan --display stack --sort dateadded
 ~/Downloads
 EOF
-
-# Restart the Dock to re-read settings.
-killall Dock
 
 {{- end -}}

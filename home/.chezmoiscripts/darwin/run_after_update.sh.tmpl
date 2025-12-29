@@ -1,0 +1,22 @@
+{{ if lookPath "brew" -}}
+    #!/bin/bash
+
+    # Stop script on error
+    set -eo pipefail
+
+    {{ range $package := list
+      "docker"
+      "docker-desktop"
+    }}
+    if brew list | grep "{{ $package }}" &> /dev/null; then
+        echo "Removing Homebrew formula/casks..."
+        brew uninstall "{{ $package }}"
+    fi
+
+    {{ end }}
+
+    # Update Homebrew
+    echo "Updating Homebrew formula/casks..."
+    brew update && brew outdated && brew upgrade && brew cleanup
+
+{{ end }}

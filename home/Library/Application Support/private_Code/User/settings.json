@@ -1,0 +1,7 @@
+{
+  "terminal.external.osxExec": "iTerm.app",
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "terminal.integrated.rightClickBehavior": "copyPaste",
+  "terminal.integrated.shell.osx": "zsh",
+  "workbench.colorTheme": "Dracula"
+}
