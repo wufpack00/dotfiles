@@ -5,7 +5,10 @@ These are the things that aren't worth the effort in figuring out how to automat
 ## Applications
 
 - [ ] Configure iTerm2
-  - The configuration file should be synced automatically. If it is not, `Preferences > General > Preferences` and select the `Load preferences from a custom folder or URL` option. Then select `~/.config/iterm2/preferences`.
+  - The configuration file should be synced automatically. If not:
+    - Go to `Preferences > General > Preferences`
+    - Select the `Load preferences from a custom folder or URL` option
+    - Select `~/.config/iterm2/preferences`
 - [ ] Configure Dropbox
   - Sync files
 - [ ] Set up Timemachine backup
@@ -14,7 +17,7 @@ These are the things that aren't worth the effort in figuring out how to automat
   - Remove from the menu bar
 - [ ] Configure Alfred
   - Activate license and grant required permissions
-  - ~~ Configure [Syncing](https://www.alfredapp.com/help/advanced/sync) with files in Dropbox ~~
+  - ~~ Setup [Sync](https://www.alfredapp.com/help/advanced/sync) to Dropbox ~~
   - Configure shortcut key
   - Execute `open ~/.config/alfred/theme` and double-click all files
   - Execute `open ~/.config/alfred/workflows` and double-click all files

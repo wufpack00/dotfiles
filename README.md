@@ -1,10 +1,12 @@
 # 👩‍💻 Dotfiles
 
-Many thanks to all the bloggers, coders, github-ers, etc. that have provided countless examples for me to use as a starting point.
+Many thanks to all the bloggers, coders, github-ers, etc. that
+have provided countless examples for me to use as a starting point.
 
 ## Installation
 
-To install [chezmoi](https://www.chezmoi.io/) as well as the defined dotfile configurations, use the following command:
+To install [chezmoi](https://www.chezmoi.io/) as well as the defined
+dotfile configurations, use the following command:
 
 ```bash
 # Will prompt to install developer tools if not found
@@ -16,7 +18,9 @@ Chezmoi will install itself using the preferred package manager on the system.
 
 ### Troubleshooting
 
-If an error occurs, you may need to restart the apply process at a specific spot. To do clear, you must to clear the state of run_onchange_ scripts:
+If an error occurs, you may need to restart the apply process at a specific spot.
+To do so, you must to clear the state of run_onchange_ scripts:
+
 ```bash
 chezmoi state delete-bucket --bucket=entryState
 ```
@@ -49,12 +53,14 @@ cz update
 
 ## Secrets
 
-Stored in [1Password](https://1password.com) and [1Password CLI](https://developer.1password.com/docs/cli/) will be installed (if necessary) when `cz apply` is executed via `/home/.install-prerequisities.sh`
+Stored in [1Password](https://1password.com) and
+[1Password CLI](https://developer.1password.com/docs/cli/) will be
+installed (if necessary) when `cz apply` is executed via `/home/.install-prerequisities.sh`
 
 Login to 1Password with:
 
-```console
-$ eval $(op signin)
+```bash
+eval $(op signin)
 ```
 
 ## Package Management
