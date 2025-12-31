@@ -3,5 +3,9 @@
   "terminal.integrated.fontFamily": "MesloLGS NF",
   "terminal.integrated.rightClickBehavior": "copyPaste",
   "terminal.integrated.shell.osx": "zsh",
-  "workbench.colorTheme": "Dracula"
+  "workbench.colorTheme": "Dracula",
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true
 }
