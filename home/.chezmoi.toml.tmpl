@@ -47,6 +47,11 @@
 {{- $name := promptStringOnce . "name" "Name" $default_name -}}
 {{- $email := promptStringOnce . "email" "Email" $default_email -}}
 
+{{- $defaultGitBranch := "main" -}}
+{{- if $work -}}
+{{- $defaultGitBranch = promptStringOnce . "defaultGitBranch" "What is default git branch" $defaultGitBranch -}}
+{{- end -}}
+
 {{/* development tools */}}
 {{- $containers := promptBoolOnce . "install.containers" "Install container development tools" false -}}
 {{- $golang := promptBoolOnce . "install.golang" "Install Golang development tools" false -}}
@@ -91,6 +96,7 @@
 [data]
   email = {{ $email | quote }}
   ephemeral = {{ $ephemeral }}
+  defaultGitBranch = {{ $defaultGitBranch | quote }}
   headless = {{ $headless }}
   hostname = {{ $hostname | quote }}
   name = {{ $name | quote }}
