@@ -1,2 +1,16 @@
 Host *
   IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+
+{{ if .work -}}
+# default github account: wufpack00
+Host github.com
+    HostName github.com
+    IdentityFile ~/.ssh/PersonalGitHub.pub
+    IdentitiesOnly yes
+
+# ansible github
+Host github-ansible
+    HostName github.com
+    IdentityFile ~/.ssh/RedHatGitHub.pub
+    IdentitiesOnly yes
+{{- end }}

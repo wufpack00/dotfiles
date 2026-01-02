@@ -5,9 +5,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+{{ if lookPath "go" -}}
 export GOBIN=$HOME/go/bin
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$GOBIN:$PATH
+{{ end -}}
 
 # XDG Base Directory Specification
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
