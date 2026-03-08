@@ -1,0 +1,35 @@
+{{ if lookPath "claude" -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+{{- $marketplaces := list -}}
+
+{{- $plugins := list
+     "claude-code-setup@claude-plugins-official"
+     "claude-md-management@claude-plugins-official"
+     "context7@claude-plugins-official"
+     "security-guidance@claude-plugins-official"
+     "skill-creator@claude-plugins-official"
+     "superpowers@claude-plugins-official" -}}
+
+{{ if .work -}}
+{{-   $marketplaces = concat $marketplaces (list
+       "openshift-eng/ai-helpers") -}}
+{{-   $plugins = concat $plugins (list
+       "sosreport@ai-helpers") -}}
+{{ end }}
+
+{{ if $marketplaces -}}
+# Add third-party marketplaces
+{{ range $marketplaces -}}
+claude plugin marketplace add {{ . }}
+{{ end }}
+{{- end -}}
+
+# Install plugins
+{{ range $plugins -}}
+claude plugin install {{ . }}
+{{ end }}
+
+{{- end }}

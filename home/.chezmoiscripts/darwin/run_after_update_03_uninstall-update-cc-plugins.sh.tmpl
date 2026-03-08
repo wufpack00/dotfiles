@@ -1,0 +1,25 @@
+{{ if lookPath "claude" -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+installed=$(claude plugin list --json | jq -r '.[].id')
+
+# Remove installed plugins
+{{ range $plugin := list
+    "example-plugin@claude-plugins-official"
+}}
+if echo "${installed}" | grep -qx "{{ $plugin }}"; then
+    echo "Removing {{ $plugin }}..."
+    claude plugin uninstall "{{ $plugin }}"
+fi
+
+{{ end }}
+
+# Upgrade installed plugins to latest version
+echo "${installed}" | while read -r plugin; do
+    echo "Updating ${plugin}..."
+    claude plugin update "${plugin}" || echo "Failed to update ${plugin}"
+done
+
+{{ end }}
