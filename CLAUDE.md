@@ -1,5 +1,10 @@
 # Chezmoi Dotfiles Project
 
+## Working with Chezmoi
+
+Claude must look up chezmoi documentation (via context7 or similar) before suggesting chezmoi-specific solutions.
+Do not guess based on general knowledge — chezmoi has specific mechanisms that are easy to misapply.
+
 ## Project Overview
 
 A chezmoi-managed dotfiles repository supporting macOS (primary) and Linux (secondary).
