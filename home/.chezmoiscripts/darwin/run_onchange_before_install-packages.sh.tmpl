@@ -37,6 +37,12 @@ set -eufo pipefail
      "itsycal"
      "visual-studio-code" -}}
 
+{{- if .work -}}
+{{- $casks = concat $casks ( list
+  "bitwarden" )
+-}}
+{{- end -}}
+
 {{- if .personal -}}
 {{- $casks = concat $casks ( list
   "dropbox"
