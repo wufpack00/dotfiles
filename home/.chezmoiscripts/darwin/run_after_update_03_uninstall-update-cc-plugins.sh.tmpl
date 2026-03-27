@@ -16,6 +16,9 @@ fi
 
 {{ end }}
 
+# Update marketplace(s) from their source
+claude plugin marketplace update
+
 # Upgrade installed plugins to latest version
 echo "${installed}" | while read -r plugin; do
     echo "Updating ${plugin}..."
