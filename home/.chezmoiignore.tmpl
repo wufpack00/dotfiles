@@ -24,3 +24,7 @@ Library
 .chezmoiscripts/linux/**
 .DS_Store
 {{ end }}
+
+{{ if not (lookPath "claude") -}}
+.claude/**
+{{ end }}

@@ -29,7 +29,6 @@ set -eufo pipefail
      "alfred"
      "bartender"
      "claude"
-     "claude-code"
      "google-chrome"
      "hazel"
      "logi-options+"
@@ -39,7 +38,8 @@ set -eufo pipefail
 
 {{- if .work -}}
 {{- $casks = concat $casks ( list
-  "bitwarden" )
+  "bitwarden"
+  "claude-code" )
 -}}
 {{- end -}}
 

@@ -3,7 +3,8 @@
 
 set -eufo pipefail
 
-{{- $marketplaces := list -}}
+{{- $marketplaces := list
+  "anthropics/claude-plugins-official" -}}
 
 {{- $plugins := list
      "claude-code-setup@claude-plugins-official"
@@ -20,12 +21,10 @@ set -eufo pipefail
        "sosreport@ai-helpers") -}}
 {{ end }}
 
-{{ if $marketplaces -}}
 # Add third-party marketplaces
 {{ range $marketplaces -}}
 claude plugin marketplace add {{ . }}
-{{ end }}
-{{- end -}}
+{{- end }}
 
 # Install plugins
 {{ range $plugins -}}
